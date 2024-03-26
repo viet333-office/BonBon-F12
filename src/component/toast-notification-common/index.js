@@ -1,7 +1,9 @@
 import { Animated, Text, View } from "react-native"
 
 function ToastNtification() {
+const  Message = (props) => {
 
+} 
     return (
         <Animated.View
             style={{
@@ -23,12 +25,12 @@ function ToastNtification() {
                 left: "5%",
             }}
         >
-            <Feather name="check-circle" size={30} color="#0E6F64" />
-            <View style={{ width: "100%" }}>
-                <Text style={styles.Info}> </Text>
-                <Text style={styles.Description}> </Text>
-            </View>
-        </Feather>
+            <Feather name="check-circle" size={30} color="#0E6F64" >
+                <View style={{ width: "100%" }}>
+                    <Text style={styles.Info}> </Text>
+                    <Text style={styles.Description}> </Text>
+                </View>
+            </Feather>
         </Animated.View >
     )
 }
