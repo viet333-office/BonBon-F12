@@ -15,9 +15,6 @@ function* handleGetListOrder() {
     }
 }
 
-const listOrderSaga = []
-export default listOrderSaga
-
 function* handleSearchListOrder({ payload }) {
     const { getData } = useLocalStorage()
     const handleCheckString = (inputText) => {
@@ -47,8 +44,13 @@ function* handleSearchListOrder({ payload }) {
     }
 }
 
-takeLatest(listOrderTypes.GET_LIST_ORDER_REQUEST, handleGetListOrder)
-takeLatest(listOrderTypes.SEARCH_LIST_ORDER_REQUEST, handleSearchListOrder)
+
+const listOrderSaga = [
+    takeLatest(listOrderTypes.GET_LIST_ORDER_REQUEST, handleGetListOrder),
+    takeLatest(listOrderTypes.SEARCH_LIST_ORDER_REQUEST, handleSearchListOrder)
+
+]
+export default listOrderSaga
 
 
 
