@@ -1,15 +1,15 @@
 import createAction from "@reduxjs/toolkit";
 import * as authType from "../constants/authType";
 import importWareHouse from "../constants";
-import cartType from '../constants/cartType'
+import cartTypes from '../constants'
 
 export const listOrderAction = {
-  listOrderRequest: createAction(GET_LIST_ORDER_REQUEST),
-  listOrderSuccess: createAction(GET_LIST_ORDER_SUCCESS),
-  listOrderFailure: createAction(GET_LIST_ORDER_FAILURE),
   createOrderRequest: createAction(listOrderTypes.CREATE_ORDER_REQUEST),
   createOrderSuccess: createAction(listOrderTypes.CREATE_ORDER_SUCCESS),
-  createOrderFailure: createAction(listOrderTypes.CREATE_ORDER_FAILURE)
+  createOrderFailure: createAction(listOrderTypes.CREATE_ORDER_FAILURE),
+  listOrderRequest: createAction(listOrderTypes.GET_LIST_ORDER_REQUEST),
+  listOrderSuccess: createAction(listOrderTypes.GET_LIST_ORDER_SUCCESS),
+  listOrderFailure: createAction(listOrderTypes.GET_LIST_ORDER_FAILURE)
 }
 
 export const authAction = {
@@ -31,3 +31,9 @@ export const searchListOrderFailure = createAction(listOrderTypes.SEARCH_LIST_OR
 export const updateListImportWareHouseRequest = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_REQUEST);
 export const updateListImportWareHouseSuccess = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_SUCCESS);
 export const updateListImportWareHouseFailure = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_FAILURE);
+
+export const cartAction = {
+  cartRequest: createAction(cartTypes.GET_CART_REQUEST),
+  cartSuccess: createAction(cartTypes.GET_CART_SUCCESS),
+  cartFailure: createAction(cartTypes.GET_CART_FAILURE)
+};
