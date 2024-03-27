@@ -40,7 +40,7 @@ function* handleSearchListOrder({ payload }) {
             yield put(searchListOrderSuccess({ data: [] }));
         }
     } catch (error) {
-        yield put(searchListOrderFailure({ errorMess: error.message }));
+        yield put(searchListOrderFailure({ errorMess: error.message }));    
     }
 }
 
