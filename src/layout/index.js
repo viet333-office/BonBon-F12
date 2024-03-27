@@ -25,7 +25,11 @@ const handleTakeToken = () => {
 const ProductNavigation = () => {
   return (
     <Stack.Navigator
-      screenOptions={{ gestureEnabled: true, headerMode: "none" }}
+      screenOptions={{
+        gestureEnabled: true,
+        headerMode: "none",
+        open: { config },
+      }}
       cardStyleInterpolator={CardStyleInterpolators.forHorizontalIOS}
     >
       <Stack.Screen
@@ -43,7 +47,11 @@ const ProductNavigation = () => {
 const WareHouseNavigation = () => {
   return (
     <Stack.Navigator
-      screenOptions={{ gestureEnabled: true, headerMode: "none" }}
+      screenOptions={{
+        gestureEnabled: true,
+        headerMode: "none",
+        open: { config },
+      }}
       cardStyleInterpolator={CardStyleInterpolators.forHorizontalIOS}
     >
       <Stack.Screen
@@ -55,5 +63,61 @@ const WareHouseNavigation = () => {
         options={{ headerShown: false, unmountOnBlur: true }}
       />
     </Stack.Navigator>
+  );
+};
+const ListOrderNavigation = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        gestureEnabled: true,
+        headerMode: "none",
+        open: { config },
+      }}
+      cardStyleInterpolator={CardStyleInterpolators.forHorizontalIOS}
+    >
+      <Stack.Screen
+        name="ListOrderScreen"
+        options={{ headerShown: false, unmountOnBlur: true }}
+      />
+      <Stack.Screen
+        name="DetailOrder"
+        options={{ headerShown: false, unmountOnBlur: true }}
+      />
+    </Stack.Navigator>
+  );
+};
+const Layout = () => {
+  const role = handleTakeToken();
+  return (
+    <Drawer.Navigator
+      screenOptions={{ drawerType: "front" }}
+      initialRouteName={
+        role === "admin" || role === "sale" ? "Product" : "Warehouse"
+      }
+      drawerContent={(props) => {
+        return <CustomeDrawer {...props} />;
+      }}
+    >
+      <Drawer.Screen
+        name="Product"
+        options={{ headerShown: false, unmountOnBlur: true }}
+        ProductNavigation={ProductNavigation}
+      />
+      <Drawer.Screen
+        name="ImportWareHouse"
+        options={{ headerShown: false, unmountOnBlur: true }}
+        WareHouseNavigation={WareHouseNavigation}
+      />
+      <Drawer.Screen
+        name="ListOrder"
+        options={{ headerShown: false, unmountOnBlur: true }}
+        ListOrderNavigation={ListOrderNavigation}
+      />
+      <Drawer.Screen
+        name="Warehouse"
+        options={{ headerShown: false, unmountOnBlur: true }}
+        WarehouseScreen={WarehouseScreen}
+      />
+    </Drawer.Navigator>
   );
 };
