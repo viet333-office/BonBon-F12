@@ -3,7 +3,7 @@ import CardUserInfoCommon from '../card-user-info-common';
 import { buttonText, color, formatMoney, shipPrice, textConst } from '../../utils';
 import styles from './style';
 
-export default TotalPriceCommon(props){
+export default function TotalPriceCommon(props){
     const { customer, isButton, totalPrice, onOpenModalSearchCustomer, onPressCreateOrder, isDisableCreateCart } = props;
     return (
         <>
