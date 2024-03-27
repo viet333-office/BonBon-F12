@@ -26,7 +26,7 @@ function* handleSearchListOrder({ payload }) {
     }
 
     try {
-        const listOrderDataLocal = yield getData(payload)
+        const listOrderDataLocal = yield getData(listOrderData.listProduct)
         const flatListCustomer = listOrderDataLocal.map(({ orderCode, fullName }) => ({ orderCode, fullName }))
         let result = [];
         flatListCustomer.forEach(item => {
