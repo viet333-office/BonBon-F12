@@ -9,3 +9,9 @@ export function useImportWareHouse() {
     }
     return { listImportWareHouseData, dispatchGetListImportWareHouse }
 }
+
+const dispatchUpdateListWareHouse = (payload) => {
+    dispatch(updateListImportWareHouseRequest(payload));
+};
+
+return [listImportWareHouseSearchData, textSearch, dispatchSearchImportListWareHouse, dispatchUpdateListWareHouse];

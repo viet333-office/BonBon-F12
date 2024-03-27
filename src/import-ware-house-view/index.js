@@ -5,9 +5,9 @@ import { Fab, Text } from "@gluestack-ui/themed"
 import { CardProductCommon, EmptyDataCommon, HeaderSearchCommon, LoadingCommon, ToastNotificationCommon } from "../component"
 import { useImportWareHouse } from "../hook"
 import { timeoutGet } from "../utils"
+import UpdateOldProductModal from './update-old-product-modal'
 
 function ImportWarehouseScreen(props) {
-
     const navigation = useNavigation()
     const isFocused = useIsFocused()
 
@@ -58,10 +58,28 @@ function ImportWarehouseScreen(props) {
                 <Text color="#fff"></Text>
             </Fab>
             isEmptyList ? (
-                <EmptyDataCommon />
+            <EmptyDataCommon />
             ) : (
-                <CardProductCommon data={listData} />
+            <CardProductCommon data={listData} />
             )
         </>
     )
 }
+
+const [isShowModal, setShowModal] = useState(false)
+const [onData, setOnData] = useState('')
+const [isClear, setClear] = useState(false)
+const closeModal = () => {
+    setShowModal(false)
+    setClear(true)
+}
+const onOpenModalNoti = () => {
+    setShowModal(true)
+    setTimeout(setShowModal(false), 1500)
+}
+
+<Text color="#fff" onOpenModalNoti={onOpenModalNoti}
+    isShowModal={isShowModal}
+    closeModal={closeModal}
+    onData={onData}
+    isClear={isClear}></Text>

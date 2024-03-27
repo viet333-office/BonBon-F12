@@ -1,3 +1,4 @@
 import * as importWareHouse from "./importWareHouseTypes"
+import * as listOrderType from './listOrderType'
 
-export default importWareHouse
+export default { listOrderType, importWareHouse }

@@ -6,7 +6,10 @@ import styles from './style';
 
 export default function CardUserInfoCommon(props) {
     const { data, isButton, onPressChange } = props;
-    
+    const uriImg = '';
+    const onPressButton = () => {
+        onPressChange();
+    }
     return (
         <>
             <View>
@@ -33,9 +36,11 @@ export default function CardUserInfoCommon(props) {
 
                         }
                     </HStack>
-                    <Box style={styles.contentRight} display={isButton?"flex":"none"}>
-                        <Button onPress={} style={styles.button}>
-
+                    <Box style={styles.contentRight} display={isButton ? "flex" : "none"}>
+                        <Button onPress={onPressButton} style={styles.button}>
+                            {
+                                data ? <ButtonText>{buttonText.BUTTON_CHANGE}</ButtonText> : <ButtonText>{buttonText.BUTTON_CHOOSE}</ButtonText>
+                            }
                         </Button>
                     </Box>
                 </HStack>

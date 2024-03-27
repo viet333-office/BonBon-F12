@@ -19,7 +19,7 @@ const HeaderBackCommon = (props) => {
                     <Center>
                         <Text size="xl" style={{
                             color: setColorWithStatus(status),
-                            fontWeight: status ? bold : object
+                            fontWeight: status ? 'bold' : 'object'
                         }}> {title || textConst.CART}
                         </Text>
                     </Center>
