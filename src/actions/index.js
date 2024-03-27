@@ -4,12 +4,12 @@ import importWareHouse from "../constants";
 import cartTypes from '../constants'
 
 export const listOrderAction = {
+  listOrderRequest: createAction(listOrderTypes.GET_LIST_ORDER_REQUEST),
+  listOrderSuccess: createAction(listOrderTypes.GET_LIST_ORDER_SUCCESS),
+  listOrderFailure: createAction(listOrderTypes.GET_LIST_ORDER_FAILURE),
   createOrderRequest: createAction(listOrderTypes.CREATE_ORDER_REQUEST),
   createOrderSuccess: createAction(listOrderTypes.CREATE_ORDER_SUCCESS),
   createOrderFailure: createAction(listOrderTypes.CREATE_ORDER_FAILURE),
-  listOrderRequest: createAction(listOrderTypes.GET_LIST_ORDER_REQUEST),
-  listOrderSuccess: createAction(listOrderTypes.GET_LIST_ORDER_SUCCESS),
-  listOrderFailure: createAction(listOrderTypes.GET_LIST_ORDER_FAILURE)
 }
 
 export const authAction = {
