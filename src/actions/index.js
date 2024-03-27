@@ -1,6 +1,11 @@
 import createAction from "@reduxjs/toolkit";
 import * as authType from "../constants/authType";
 
+export const listOrderAction = {
+    listOrderRequest: createAction(GET_LIST_ORDER_REQUEST),
+    listOrderSuccess: createAction(GET_LIST_ORDER_SUCCESS),
+    listOrderFailure: createAction(GET_LIST_ORDER_FAILURE)
+}
 export const authAction = {
   loginRequest: createAction(authType.LOGIN_REQUEST),
   loginSuccess: createAction(authType.LOGIN_SUCCESS),
