@@ -21,6 +21,7 @@ const config = {
 };
 const handleTakeToken = () => {
   const useToken = useSelector((state) => state.auth).token;
+  return useToken;
 };
 const ProductNavigation = () => {
   return (
