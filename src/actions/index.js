@@ -13,15 +13,23 @@ export const authAction = {
   loginSuccess: createAction(authType.LOGIN_SUCCESS),
   loginFailure: createAction(authType.LOGIN_FAILURE),
 };
-<<<<<<< HEAD
 export const importWareHouseAction = {
   addNewProductImportWareHouseRequest: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_REQUEST),
   addNewProductImportWareHouseSuccess: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_SUCCESS),
   addNewProductImportWareHouseFailure: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_FAILURE)
 }
-=======
 
-export const importWareHouseAction = {
+export const imageProductAction = {
+  getListImageProductRequest: createAction(imageProductTypes.GET_IMAGE_PRODUCT_REQUEST),
+  getListImageProductSuccess: createAction(imageProductTypes.GET_IMAGE_PRODUCT_SUCCESS),
+  getListImageProductFailure: createAction(imageProductTypes.GET_IMAGE_PRODUCT_FAILURE),
+
+  updateListImageProductRequest: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_REQUEST),
+  updateListImageProductSuccess: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_SUCCESS),
+  updateListImageProductFailure: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_FAILURE)
+}
+
+export const importimportWareHouseAction = {
   listImportWareHouseRequest: createAction(
     importWareHouse.GET_IMPORT_WARE_HOUSE_REQUEST
   ),
@@ -57,4 +65,3 @@ export const wareHouseAction = {
   listProductSuccess: createAction(wareHouseTypes.GET_LIST_PRODUCT_SUCCESS),
   listProductFailure: createAction(wareHouseTypes.GET_LIST_PRODUCT_FAILURE),
 };
->>>>>>> dev

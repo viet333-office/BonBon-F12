@@ -3,8 +3,11 @@ import styles from "./style";
 import { Keyboard, StyleSheet } from "react-native"
 import { useState } from "react";
 import { useImportWareHouse, useListImageProduct, useProduct } from "../hook";
+import ChooseImageProductModal from "./choose-image-product-modal"
 export function CreateProductScreen() {
     const { ...productData } = useProduct;
+    const { ...dispatchCreateNewProduct } = useImportWareHouse;
+    const { dispatchGetListImageProduct, listImageProductData, dispatchUpdateListImageProduct } = useListImageProduct();
     const uriImg = "https://www.shutterstock.com/image-vector/photo-camera-vector-icon-600nw-1345025204.jpg";
     const intialProduct = {
         id: 0,
@@ -36,6 +39,22 @@ export function CreateProductScreen() {
     const refInput = useRef("null")
     const refInput2 = useRef("null")
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        dispatchGetListImageProduct();
+        dispatchGetListImageProduct();
+    }, [isFocused]);
+
+    useEffect(() => {
+        if (nameCheckInput === "price") {
+            refInput.current.focus();
+        } else if (nameCheckInput === "quantity") {
+            refInput2.current.focus();
+        } else {
+            setCheckDisplay(false);
+        }
+    }, [nameCheckInput]);
     const handeNavigateProduct = () => {
         clearnState();
         navigation.navigate('ImportWareHouseScreen');
@@ -84,6 +103,12 @@ export function CreateProductScreen() {
                 unit: newProduct.unit !== "",
                 avatar: newProduct.avatar !== uriImg,
             };
+            const handleSetImage = (data) => {
+                setIsOpentLabel(true);
+                setNewProduct({ ...newProduct, ...data });
+                setValidate({ ...initialValidate });
+                setShowModalChooseImg(false);
+            }
             const checkFocus = (data) => {
                 setCheckDisplay(true);
                 setNameCheckInput(data);
@@ -107,11 +132,14 @@ export function CreateProductScreen() {
                         rootPrice: parseInt(newProduct.rootPrice),
                         floorPrice: parseInt(newProduct.floorPrice),
                         avatar: newProduct.avatar,
-                        codeProduct: initialProduct.codeProduct,
+                        codeProduct: initialProduct.codeProduct
                     }
                 }
+                dispatchCreateNewProduct(newProductToCart);
+                dispatchUpdateListImageProduct(newProduct);
+                clearnState();
+                navigation.navigate("ImportWareHouseScreen");
             }
-
             const settingState = (value, type) => {
                 switch (type) {
                     case "name":
@@ -160,7 +188,7 @@ export function CreateProductScreen() {
                                                 fontSize={10}
                                                 source={!validate.avatar && newProduct.avatar == uriImg ? "flex" : "none"}
                                             >
-                                                {textConst.VALIDATE_IMPORT_IMAGE_PRODUCT} // cần chỉnh sửa
+                                                {textConst.VALIDATE_IMPORT_IMAGE_PRODUCT}
                                             </FormControlErrorText>
                                         </Center>
                                     </Box>
@@ -196,10 +224,10 @@ export function CreateProductScreen() {
                                                 style={styles.inputNearImg}
                                                 borderWidth="1.5"
                                                 isDisabled={true}
-                                                isInvalid={!validate.quantity && newProduct.quantity == []} // rỗng là mảng hay giá trị
+                                                isInvalid={!validate.quantity && newProduct.quantity == ""}
                                             >
                                                 <Text style={styles.text_input}>
-                                                    SL tồn: (*) // cần xem lại
+                                                    SL tồn: (*)
                                                 </Text>
                                                 <InputField
                                                     keyboardType="numeric"
@@ -261,7 +289,7 @@ export function CreateProductScreen() {
                                             placeholder="Tên SP: (*)"
                                             borderWidth="1.5"
                                             isDisabled={true}
-                                            isInvalid={!validat.name && newProduct.name == []} // rỗng là mảng hay giá trị
+                                            isInvalid={!validat.name && newProduct.name == ""}
                                         >
                                             <InputField
                                                 size="sm"
@@ -277,8 +305,8 @@ export function CreateProductScreen() {
                                         <FormControlErrorText
                                             fontSize={10}
                                             display={!validate.name && newProduct.name == "" ? "flex" : "none"}
-                                            textConst={VALIDATE_NAME_PRODUCT} // cần xem lại
                                         >
+                                            {textConst.VALIDATE_NAME_PRODUCT}
                                         </FormControlErrorText>
                                     </VStack>
                                 </HStack>
@@ -300,7 +328,7 @@ export function CreateProductScreen() {
                                             alignItems="center"
                                             boderWidth="1.5"
                                             isDisabled={true}
-                                            isInvalid={!validate.unit && newProduct.unit == []} // rỗng là giá trị hay mảng
+                                            isInvalid={!validate.unit && newProduct.unit == ""}
                                         >
                                             <InputField
                                                 size="sm"
@@ -464,7 +492,15 @@ export function CreateProductScreen() {
                                     </VStack>
                                     <HStack style={styles.hstack_bnt}>
                                         <Button style={styles.btn_bottom}>
-                                            <Text bold color="white">
+                                            <Text
+                                                onPress={handleCreate}
+                                                bold color="white"
+                                                isOpen={(isShowModalChooseImg)}
+                                                onCloseModal={(onToggleModalChooseImg)}
+                                                data={(listImageProductData)}
+                                                handleChooseImgProduct={handleSetImage}
+                                            >
+                                                {/* cps40 */}
                                                 Thêm
                                             </Text>
                                         </Button>
@@ -473,10 +509,10 @@ export function CreateProductScreen() {
                             </VStack>
                         </KeyboardAvoidingView>
                     </ScrollView>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback >
+                {/* onPress={handleCreate} cần confirm lại */}
                 < ChooseImageProductModal />
             </SafeAreaView >
-
         </>
     )
 }
