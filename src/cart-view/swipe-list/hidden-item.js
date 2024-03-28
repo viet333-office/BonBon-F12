@@ -2,7 +2,7 @@ import Dimensions from 'react-native'
 import { HStack, Pressable, VStack } from '@gluestack-ui/themed'
 import { AntDesign } from '@expo/vector-icons'
 
-const HiddenItem = ({ data, onOpenDeleteProductModal, _rowMap }) => {
+export default function HiddenItem({ data, onOpenDeleteProductModal, _rowMap }) {
     return (
         <HStack
             flex={1}
@@ -31,5 +31,3 @@ const HiddenItem = ({ data, onOpenDeleteProductModal, _rowMap }) => {
         </HStack>
     )
 }
-
-export default HiddenItem;
