@@ -8,54 +8,53 @@ const ListOrderScreen = (props) => {
     const [listData, setListData] = useState(listOrderData);
     const [isEmptyList, setIsEmptyList] = useState(false);
     const [isLoading, setLoading] = useState(false);
-    useEffect(([]) => {
-        setLoading(true);
+    const { listOrderSearchData, textSearch, dispatchSearchListOrder } = useListOrder()
+
+    const onGetTextSearch = (data) => {
+        setLoading(true)
         setTimeout(() => {
-            dispatchGetListOrder();
             setLoading(false)
+            dispatchSearchListOrder(data)
+        }, timeout);
+
+        useEffect(([]) => {
+            setLoading(true);
+            setTimeout(() => {
+                dispatchGetListOrder();
+                setLoading(false)
+            })
         })
-    })
 
-    if (isEmptyList === true) {
-        return <EmptyDataCommon />
-    }
-    if (isEmptyList === false) {
-        return <FlatListOrderCommon data={listData} />
-    }
-    <LoadingCommon isOpen={isLoading} />
+        useMemo(() => {
+            if (textSearch && listOrderSearchData.length === 0) {
+                return setIsEmptyList(true);                
+            }
 
-    return (
-        <>
-            <HeaderSearchCommon onGetTextSearch={onGetTextSearch} />
-            <EmptyDataCommon />
-            <FlatListOrderCommon />
-            <LoadingCommon />
-        </>
-    );
-};
-const { listOrderSearchData, textSearch, dispatchSearchListOrder } = useListOrder()
+            setIsEmptyList(false);
 
-const onGetTextSearch = (data) => {
-    setLoading(true)
-    setTimeout(() => {
-        setLoading(false)
-        dispatchSearchListOrder(data)
-    }, timeout);
-    const memoizedData = useMemo(() => {
-        if (textSearch && listOrderSearchData.length === 0) {
-            setIsEmptyList(true);
-            return;
+            if (textSearch && listOrderSearchData.length !== 0) {
+                setListData(listOrderSearchData);
+            } else {
+                setListData(listOrderData);
+            }
+        }, [textSearch, listOrderSearchData, listOrderData]);
+
+        if (isEmptyList === true) {
+            return <EmptyDataCommon />
         }
-
-        setIsEmptyList(false);
-
-        if (textSearch && listOrderSearchData.length !== 0) {
-            setListData(listOrderSearchData);
-        } else {
-            setListData(listOrderData);
+        if (isEmptyList === false) {
+            return <FlatListOrderCommon data={listData} />
         }
-    }, [textSearch, listOrderSearchData, listOrderData]);
+        <LoadingCommon isOpen={isLoading} />
 
-    <HeaderSearchCommon onGetTextSearch={onGetTextSearch} />
-
+        return (
+            <>
+                <HeaderSearchCommon onGetTextSearch={onGetTextSearch} />
+                <EmptyDataCommon />
+                <FlatListOrderCommon />
+                <LoadingCommon />
+            </>
+        );
+    };
 }
+export default ListOrderScreen

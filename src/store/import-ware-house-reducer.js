@@ -38,8 +38,7 @@ export default listProductReducer = (state = INITIAL_STATE, action) => {
         case UPDATE_IMPORT_WARE_HOUSE_SUCCESS:
             return {
                 isFetching: false,
-                isError: false,
-                errorMess: null
+                listImportWareHouseData: payload.data
             }
         case UPDATE_IMPORT_WARE_HOUSE_FAILURE:
             return {

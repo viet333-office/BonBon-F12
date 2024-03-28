@@ -7,17 +7,14 @@ export const useListOrder = () => {
     const dispatchGetListOrder = () => {
         dispatch(listOrderAction.listOrderRequest());
     };
-    return { listOrderData, dispatchGetListOrder };
+    const listOrderSearchData = useSelector(state => state.listOrderSearchData).listOrder
+    const textSearch = useSelector(state => state.textSearch).listOrder
+    
+    const dispatchSearchListOrder = (payload) => {
+    
+        dispatch(action.searchListOrderRequest(payload))
+    
+        dispatch(listOrderAction.searchListOrderRequest(payload))
+    }
+    return { listOrderData, dispatchGetListOrder, listOrderSearchData, textSearch, dispatchSearchListOrder };
 };
-
-const listOrderSearchData = useSelector(state => state.listOrderSearchData).listOrder
-const textSearch = useSelector(state => state.textSearch).listOrder
-
-const dispatchSearchListOrder = (payload) => {
-
-    dispatch(action.searchListOrderRequest(payload))
-
-    dispatch(listOrderAction.searchListOrderRequest(payload))
-}
-
-return { listOrderSearchData, textSearch, dispatchSearchListOrder }

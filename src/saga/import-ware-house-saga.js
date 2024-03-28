@@ -5,20 +5,19 @@ import useLocalStorage from "../hook/useLocalStorage"
 import { listProduct } from "../mockup/list-product"
 
 function* handleGetListImportWareHouse() {
-    useLocalStorage({getData})
+    useLocalStorage({ getData })
     try {
         const listProductDataLocal = yield useLocalStorage({ getData: listProduct.key })
-        yield put ({
+        yield put({
             importWareHouseAction: importWareHouseAction.listImportWareHouseSuccess(listProductDataLocal)
         })
     } catch (error) {
-        yield put ({ 
+        yield put({
             importWareHouseAction: importWareHouseAction.listImportWareHouseFailure(error.message)
         })
     }
 }
 
-export default importWareHouseSaga
 function* handleUpdateListImportWareHouse({ data }) {
     const { getdata, setdata } = useLocalStorage()
     try {
@@ -31,7 +30,7 @@ function* handleUpdateListImportWareHouse({ data }) {
     } catch (error) {
         yield put({
             type: UPDATE_IMPORT_WARE_HOUSE_FAILURE,
-            errorMess:   error.message
+            errorMess: error.message
         })
     }
 }
@@ -39,3 +38,5 @@ function* handleUpdateListImportWareHouse({ data }) {
 const importWareHouseSaga = [
     takeLatest(importWareHouseTypes.GET_IMPORT_WARE_HOUSE_REQUEST, handleGetListImportWareHouse)
 ]
+
+export default importWareHouseSaga
