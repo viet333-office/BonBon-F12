@@ -71,15 +71,15 @@ export default function ProductCard({ data, index, onUpdateCart, validateData, i
     return (
         <HStack
             style={styles.contentCart}
-            justifyContent="space - between" >
+            justifyContent="space-between" >
             XGH-HTML_PC-1
             <View
                 style={styles.boxImg} >
                 XGH-HTML_PC-2
                 <Image
                     style={styles.imgProduct}
-                    alt="Ảnh thuốc" />
-                XGH-HTML_PC-3
+                    alt="Ảnh thuốc"
+                    source={{ uri: data.avatar }} />
             </View >
             <VStack
                 style={styles.inforProduct}
@@ -88,21 +88,26 @@ export default function ProductCard({ data, index, onUpdateCart, validateData, i
                 <Text
                     size="md"
                     fontWeight="bold"
-                    numberOfLines={1} >
-                    XGH-HTML_PC-5
+                    numberOfLines={1}
+                    style={{ marginBottom: Dimensions.get('window').height * 0.0255 }}
+                    color={color.blackName}
+                    children={data.name} >
                 </Text >
                 <VStack>
                     XGH-HTML_PC-6
                     <HStack
-                        justifyContent="space-between">
+                        justifyContent="space-between"
+                        style={{ marginBottom: Dimensions.get('window').height * 0.00505 }} >
                         XGH-HTML_PC-7
                         <VStack>
                             XGH-HTML_PC-8
-                            <Text size="sm">
-                                XGH-HTML_PC-9
+                            <Text size="sm"
+                                color={color.blueSky}
+                                children={formatMoney(data.floorPrice)} >
                             </Text>
-                            <Text size="xs">
-                                XGH-HTML_PC-10
+                            <Text size="xs"
+                                color={color.lightGrayCart}
+                                children={data.unit} >
                             </Text>
                         </VStack>
                         <VStack
@@ -110,8 +115,8 @@ export default function ProductCard({ data, index, onUpdateCart, validateData, i
                             XGH-HTML_PC-11
                             <Ionicons
                                 name="md-close"
-                                size={20} />
-                            XGH-HTML_PC-12
+                                size={20}
+                                color={color.blueSky} />
                         </VStack>
                         <Box style={styles.inpQuantity}>
                             XGH-HTML_PC-13
@@ -119,68 +124,78 @@ export default function ProductCard({ data, index, onUpdateCart, validateData, i
                                 width="75%"
                                 h={32}
                                 isDisabled={data.isChange}
-                                isInvalid={showValidateSalePrice}
-                            >
+                                isInvalid={showValidateSalePrice} >
                                 <InputField
                                     keyboardType="number-pad"
                                     textAlign="center"
-                                    size="" />
-                                XGH-HTML_PC-15
+                                    size=""
+                                    color={color.blueSky}
+                                    value={productUpdate.quantity.toString()}
+                                    onChangeText={onChangeInputQuantity} />
                             </Input>
                         </Box >
                         <Button
                             style={styles.btnUpdateQuantity}
-                            size="xs" >
-                            XGH-HTML_PC-16
+                            size="xs"
+                            isDisabled={data.isChange}
+                            onPress={onPressUpButton} >
                             < ButtonIcon >
                                 XGH - HTML_PC - 17
                                 <AntDesign
                                     name="caretup"
-                                    size={13} />
-                                XGH-HTML_PC-18
+                                    size={13}
+                                    color={color.blueSky} />
                             </ButtonIcon >
                         </Button >
                     </HStack >
                     XGH - HTML_PC - 19
                     <HStack
-                        justifyContent="space - between"
+                        justifyContent="space-between"
                         alignItems="center" >
                         XGH-HTML_PC-20
                         <Button
                             style={styles.btnSalePrice}
                             textAlign="center"
-                            size="xs" >
-                            XGH-HTML_PC-21
+                            size="xs"
+                            isDisabled={data.isChange || formatMoney(productUpdate.salePrice) === "0"}
+                            onPress={onPressIsSalePrice}>
                             <FontAwesome
-                                size={15} />
-                            XGH-HTML_PC-22
+                                size={15}
+                                name={productUpdate.isSalePrice ? "plus" : "minus"}
+                                color={productUpdate.isSalePrice ? color.darkGreen : color.plumRed} />
                         </Button >
                         <Input
-                            style={styles.inpSalePrice} isDisabled={data.isChange} isInvalid={showValidateMaxQuantity || showValidateMinQuantity}>
+                            style={styles.inpSalePrice}
+                            isDisabled={data.isChange}
+                            isInvalid={showValidateMaxQuantity || showValidateMinQuantity} >
                             <InputField
-                                keyboardType="number - pad"
+                                keyboardType="number-pad"
                                 size="sm"
-                                lineHeight={17} />
-                            XGH-HTML_PC-24
+                                lineHeight={17}
+                                color={productUpdate.isSalePrice ? 'color.darkGreen' : 'color.plumRed'}
+                                value={formatMoney(productUpdate.salePrice)}
+                                onChangeText={onChangeInputSalePrice} />
                         </Input >
                         <VStack justifyContent="center">
                             XGH-HTML_PC-25
                             <Text
                                 textAlign=" center"
-                                size={"sm"}>
-                                XGH-HTML_PC-26
+                                size={"sm"}
+                                color={color.plumRed}
+                                children={formatMoney(sumPrice)} >
                             </Text>
                         </VStack >
                         <Button
                             style={styles.btnUpdateQuantity}
-                            size="xs" >
-                            XGH-HTML_PC-27
+                            size="xs"
+                            isDisabled={data.isChange || productUpdate.quantity <= 1}
+                            onPress={onPressDownButton} >
                             < ButtonIcon >
                                 XGH - HTML_PC - 28
                                 <AntDesign
                                     name="caretdown"
-                                    size={13} />
-                                XGH-HTML_PC-29
+                                    size={13}
+                                    color={color.blueSky} />
                             </ButtonIcon >
                         </Button >
                     </HStack >
