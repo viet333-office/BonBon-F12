@@ -9,3 +9,9 @@ export const authAction = {
 export const searchListOrderRequest = createAction(listOrderTypes.SEARCH_LIST_ORDER_REQUEST);
 export const searchListOrderSuccess = createAction(listOrderTypes.SEARCH_LIST_ORDER_SUCCESS);
 export const searchListOrderFailure = createAction(listOrderTypes.SEARCH_LIST_ORDER_FAILURE);
+
+export const cartAction = {
+  createItemProductRequest: createAction(listProductTypes.ADD_ITEM_PRODUCT_REQUEST),
+  createItemProductSucsses:createAction(listProductTypes.ADD_ITEM_PRODUCT_SUCCESS),
+  createItemProductFailure: createAction(listProductTypes.ADD_ITEM_PRODUCT_FAILURE)
+}
