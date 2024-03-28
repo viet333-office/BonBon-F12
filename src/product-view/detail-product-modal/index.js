@@ -376,3 +376,4 @@ const DetailProductModal = (props) => {
         </>
     );
 };
+export default DetailProductModal;
