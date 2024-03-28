@@ -42,5 +42,11 @@ export default listProductReducer = (
 
         default:
             return INITIAL_STATE;
+        case listProductType.ADD_ITEM_PRODUCT_REQUEST:
+            return {
+                ...state,
+                isFetching:false,
+            }
+        
     }
 };
