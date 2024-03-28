@@ -1,6 +1,7 @@
 import createAction from "@reduxjs/toolkit";
 import * as authType from "../constants/authType";
 import importWareHouse from "../constants";
+import customerTypes from "../constants/index"
 
 export const listOrderAction = {
     listOrderRequest: createAction(GET_LIST_ORDER_REQUEST),
@@ -26,3 +27,10 @@ export const searchListOrderFailure = createAction(listOrderTypes.SEARCH_LIST_OR
 export const updateListImportWareHouseRequest = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_REQUEST);
 export const updateListImportWareHouseSuccess = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_SUCCESS);
 export const updateListImportWareHouseFailure = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_FAILURE);
+
+export const customerAction ={
+  listCustomerRequest : createAction (customerTypes.ADD_CUSTOMER_REQUEST),
+  listCustomerSuccess : createAction (customerTypes.ADD_CUSTOMER_SUCCESS),
+  listCustomerFailure : createAction (customerTypes.ADD_CUSTOMER_FAILURE),
+}
+
