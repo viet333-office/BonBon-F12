@@ -52,7 +52,7 @@ const CartScreen = () => {
         });
     }, [listLocalProduct]);
 
-const matchTotalPrice = () => {
+    const matchTotalPrice = () => {
         if (listCartProduct.length > 0) {
             const totalPrice = calculateTotalPrice(listCartProduct) + shipPrice;
             setCartTotalPrice(totalPrice);
@@ -83,7 +83,7 @@ const matchTotalPrice = () => {
 
     const mergeDataProductChange = () => {
         const clonedProductData = cloneDeep(listLocalProduct);
-    
+
         for (let i = 0; i < clonedProductData.length; i++) {
             for (let j = 0; j < listCartProduct.length; j++) {
                 if (clonedProductData[i].codeProduct === listCartProduct[j].codeProduct) {
@@ -94,11 +94,11 @@ const matchTotalPrice = () => {
                 }
             }
         }
-    
+
         return clonedProductData;
     };
-    
-   
+
+
     const getListCodeProductCart = () => {
         const arrCode = listCartProduct.map(item => item.codeProduct);
         const removeDuplicateCode = Array.from(new Set(arrCode));
@@ -188,55 +188,53 @@ const matchTotalPrice = () => {
 
     const closeCreateOderModal = () => {
         setIsOpenModalCreateOrder(false)
-    }    
-return(
-    <SafeAreaView style={styles.container}>
-    XGH-HTML_CV-1
-    <Box style={styles.boxHeaderBack}>
-        XGH-HTML_CV-2
-        <HeaderBackCommon
-            isDeleteAll={isEmpty(listCartProduct)}
-            onDeleteAll={onOpenDeleteAllModal}
-            onBack={onBack}
-        />
-    </Box>
-    XGH-HTML_CV-4
-    <ToastNotificationCommon />
-    XGH-HTML_CV-5
-    <SwipeList
-        listProductSwipe={listProductSwipe}
-        updateCartCurrentData={updateCartCurrentData}
-        onOpenDeleteProductModal={onOpenDeleteProductModal}
-    />
-    <SearchCustomerModal />
-    XGH-HTML_CV-7
-    <DeleteProductModal />
-    XGH-HTML_CV-8
-    <ConfirmOderCreationModal />
-    XGH-HTML_CV-9
-    <VStack alignItems="center" marginBottom={"60%"}>
-        {listProductSwipe.length === 0 ? (
-            <>
-                XGH-HTML_CV-10
-                <AntDesign name="warning" size={54} color="#cccc" />
-                XGH-HTML_CV-11
-                <Text marginTop={"5%"} size="md">
-                    XGH-HTML_CV-12
-                    Không có sản phẩm nào!
-                </Text>
-            </>
-        ) : (
-            <></>
-        )}
-    </VStack>
-    <TotalPriceCommon
-        customer={cartCustomer}
-        isButton={true}
-        totalPrice={cartTotalPrice}
-        isDisableCreateCart={isEmpty(listCartProduct) || isEmpty(cartCustomer)}
-    />
-    XGH-HTML_CV-13
-</SafeAreaView>
-)
+    }
+    return (
+        <SafeAreaView style={styles.container}>
+            <Box style={styles.boxHeaderBack}>
+                <HeaderBackCommon
+                    isDeleteAll={isEmpty(listCartProduct)}
+                    onDeleteAll={onOpenDeleteAllModal}
+                    onBack={onBack}
+                />
+            </Box>
+            XGH-HTML_CV-4
+            <ToastNotificationCommon />
+            XGH-HTML_CV-5
+            <SwipeList
+                listProductSwipe={listProductSwipe}
+                updateCartCurrentData={updateCartCurrentData}
+                onOpenDeleteProductModal={onOpenDeleteProductModal}
+                listCartProduct={listCartProduct}
+                isValidateDataCart={isValidateDataCart}
+            />
+            <SearchCustomerModal />
+            XGH-HTML_CV-7
+            <DeleteProductModal />
+            XGH-HTML_CV-8
+            <ConfirmOderCreationModal
+                isOpen={isOpenModalCreateOrder}
+                onClose={closeCreateOrderModal}
+                onConfirm={confirmCreateOrderModal} />
+            <VStack alignItems="center" marginBottom={"60%"}>
+                {listProductSwipe.length === 0 ? (
+                    <>
+                        <AntDesign name="warning" size={54} color="#cccc" />
+                        <Text marginTop={"5%"} size="md">
+                            Không có sản phẩm nào!
+                        </Text>
+                    </>
+                ) : (
+                    <></>
+                )}
+            </VStack>
+            <TotalPriceCommon
+                customer={cartCustomer}
+                isButton={true}
+                totalPrice={cartTotalPrice}
+                isDisableCreateCart={isEmpty(listCartProduct) || isEmpty(cartCustomer)}
+            />
+        </SafeAreaView>
+    )
 }
 export default CartScreen    
