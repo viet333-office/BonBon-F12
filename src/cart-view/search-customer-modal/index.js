@@ -131,14 +131,42 @@ export const SearchCustomerModal = (props) => {
                             </Input>
                         </ModalHeader>
                         <ModalBody
-                            children={isEmptyList ? <EmptyDataCommon title={"Thêm khách hàng mới"} /> : <></>}>
+                            children={
+                                isEmptyList ?
+                                    <EmptyDataCommon title={"Thêm khách hàng mới"}
+                                        isCheckShowButton={true}
+                                        onHandlePress={() => {
+                                            onOpenModalCreate()
+                                        }}
+                                    /> :
+                                    <FlatList
+                                        scrollEnabled={true}
+                                        data={listData}
+                                        renderItem={(item) => {
+                                            <CardUserInfoCommon onPress={() => {
+                                                props.onChooseCustomer(item)
+                                            }} />
+                                        }}
+                                    >
+                                        <Pressable
+                                            data={item}
+                                        >
+                                        </Pressable>
+                                    </FlatList>
+                            }>
                         </ModalBody>
                     </ModalContent>
                     <ToastNotificationCommon
                         Info="Thêm thành công!!!!!"
                         Description="Đã thêm mới 1 khách hàng"
+                        isNotification={true}
                     />
-                    <CreateCustomerModal />
+                    <CreateCustomerModal 
+                        onOpenModalToast={onOpenModalToast}
+                        isShowModalCreate={isShowModalCreate}
+                        onCloseModalCreate={onCloseModalCreate}
+                        onClearTextSearch={onClearTextSearchFromModal}
+                    />
                 </Modal>
             </TouchableWithoutFeedback>
             <EmptyDataCommon

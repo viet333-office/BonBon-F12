@@ -23,7 +23,7 @@ export const authAction = {
   loginFailure: createAction(authType.LOGIN_FAILURE),
 };
 
-export const importWareHouseAction = {
+export const importimportWareHouseAction = {
   listImportWareHouseRequest: createAction(importWareHouse.GET_IMPORT_WARE_HOUSE_REQUEST),
   listImportWareHouseSuccess: createAction(importWareHouse.GET_IMPORT_WARE_HOUSE_SUCCESS),
   listImportWareHouseFailure: createAction(importWareHouse.GET_IMPORT_WARE_HOUSE_FAILURE)
