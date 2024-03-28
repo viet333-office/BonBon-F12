@@ -3,6 +3,12 @@ import * as authType from "../constants/authType";
 import importWareHouse from "../constants";
 import * as wareHouseTypes from "../constants/wareHouseType";
 import cartTypes from '../constants'
+import listProductTypes from "../constants"
+export const listProductAction = {
+     listProductRequest : createAction(listProductTypes.GET_LIST_PRODUCT_REQUEST),
+     listProductSuccess : createAction(listProductTypes.GET_LIST_PRODUCT_SUCCESS),
+     listProductFailure : createAction(listProductTypes.GET_LIST_PRODUCT_FAILURE)
+}
 
 export const listOrderAction = {
   listOrderRequest: createAction(listOrderTypes.GET_LIST_ORDER_REQUEST),
