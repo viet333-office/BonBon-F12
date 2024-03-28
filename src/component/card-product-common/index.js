@@ -56,9 +56,7 @@ export default CardProductCommon = (props) => {
                                 {formatMoney(item.quantity)}
                             </Text>
                         </VStack>
-
                     </HStack>
-
                 </HStack>
             </Pressable>
         )

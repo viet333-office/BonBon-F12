@@ -3,9 +3,9 @@ import * as authType from "../constants/authType";
 import importWareHouse from "../constants";
 
 export const listOrderAction = {
-    listOrderRequest: createAction(GET_LIST_ORDER_REQUEST),
-    listOrderSuccess: createAction(GET_LIST_ORDER_SUCCESS),
-    listOrderFailure: createAction(GET_LIST_ORDER_FAILURE)
+  listOrderRequest: createAction(GET_LIST_ORDER_REQUEST),
+  listOrderSuccess: createAction(GET_LIST_ORDER_SUCCESS),
+  listOrderFailure: createAction(GET_LIST_ORDER_FAILURE)
 }
 export const authAction = {
   loginRequest: createAction(authType.LOGIN_REQUEST),
