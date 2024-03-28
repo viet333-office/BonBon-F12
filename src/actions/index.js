@@ -53,5 +53,8 @@ export const updateListImportWareHouseFailure = createAction(importWareHouseType
 export const cartAction = {
   cartRequest: createAction(cartTypes.GET_CART_REQUEST),
   cartSuccess: createAction(cartTypes.GET_CART_SUCCESS),
-  cartFailure: createAction(cartTypes.GET_CART_FAILURE)
+  cartFailure: createAction(cartTypes.GET_CART_FAILURE),
+  createItemProductRequest: createAction(listProductTypes.ADD_ITEM_PRODUCT_REQUEST),
+  createItemProductSucsses: createAction(listProductTypes.ADD_ITEM_PRODUCT_SUCCESS),
+  createItemProductFailure: createAction(listProductTypes.ADD_ITEM_PRODUCT_FAILURE),
 };
