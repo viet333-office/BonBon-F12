@@ -18,6 +18,21 @@ export const authAction = {
   loginSuccess: createAction(authType.LOGIN_SUCCESS),
   loginFailure: createAction(authType.LOGIN_FAILURE),
 };
+export const importWareHouseAction = {
+  addNewProductImportWareHouseRequest: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_REQUEST),
+  addNewProductImportWareHouseSuccess: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_SUCCESS),
+  addNewProductImportWareHouseFailure: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_FAILURE)
+}
+
+export const imageProductAction = {
+  getListImageProductRequest: createAction(imageProductTypes.GET_IMAGE_PRODUCT_REQUEST),
+  getListImageProductSuccess: createAction(imageProductTypes.GET_IMAGE_PRODUCT_SUCCESS),
+  getListImageProductFailure: createAction(imageProductTypes.GET_IMAGE_PRODUCT_FAILURE),
+
+  updateListImageProductRequest: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_REQUEST),
+  updateListImageProductSuccess: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_SUCCESS),
+  updateListImageProductFailure: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_FAILURE)
+}
 
 export const importimportWareHouseAction = {
   listImportWareHouseRequest: createAction(
@@ -53,5 +68,8 @@ export const updateListImportWareHouseFailure = createAction(importWareHouseType
 export const cartAction = {
   cartRequest: createAction(cartTypes.GET_CART_REQUEST),
   cartSuccess: createAction(cartTypes.GET_CART_SUCCESS),
-  cartFailure: createAction(cartTypes.GET_CART_FAILURE)
+  cartFailure: createAction(cartTypes.GET_CART_FAILURE),
+  createItemProductRequest: createAction(listProductTypes.ADD_ITEM_PRODUCT_REQUEST),
+  createItemProductSucsses: createAction(listProductTypes.ADD_ITEM_PRODUCT_SUCCESS),
+  createItemProductFailure: createAction(listProductTypes.ADD_ITEM_PRODUCT_FAILURE),
 };

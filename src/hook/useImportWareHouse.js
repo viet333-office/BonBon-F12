@@ -13,5 +13,8 @@ export function useImportWareHouse() {
 const dispatchUpdateListWareHouse = (payload) => {
     dispatch(updateListImportWareHouseRequest(payload));
 };
+const dispatchCreateNewProduct  = (payload) => {
+    dispatch(addNewProductImportWareHouseRequest(payload));
+};
 
-return [listImportWareHouseSearchData, textSearch, dispatchSearchImportListWareHouse, dispatchUpdateListWareHouse];
+return [listImportWareHouseSearchData, textSearch, dispatchSearchImportListWareHouse, dispatchUpdateListWareHouse , dispatchCreateNewProduct];
