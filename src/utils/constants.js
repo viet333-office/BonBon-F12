@@ -2,7 +2,7 @@ export const textConst = {
     CART: "Giỏ hàng",
     DELIVERED: "Liên giao",
     RECEIVED: "Liên nhận",
-    VOLATILYTY: "Liên biến động",
+    VOLATILITY: "Liên biến động",
     FLOOR_PRICE: "Giá sàn",
     NEW_FLOOR_PRICE: "Giá sàn mới",
     SHIP_PRICE_TEXT: "Phí ship",
