@@ -1,16 +1,74 @@
 import ConfirmOderCreationModal from "./confirm-order-creation-modal";
+import DeleteProductModal from './delete-product-modal'
 
 const CartScreen = () => {
     const [isValidateDataCart, setIsValidateDataCart] = useState(false);
     const [isOpenModalCreateOrder, setIsOpenModalCreateOrder] = useState(false);
     const [arrCodeProduct, setArrCodeProduct] = useState([]);
     const { dispatchCreateOder } = useListOrder();
+    const { dispatchUpdateCart } = useCart()
+
+    const matchTotalPrice = () => {
+        if (listCartProduct.length > 0) {
+            const totalPrice = calculateTotalPrice(listCartProduct) + shipPrice;
+            setCartTotalPrice(totalPrice);
+        } else {
+            setCartTotalPrice(0);
+        }
+    };
+
+    const getDataValidate = () => {
+        const updatedListCartProduct = listLocalProduct.map((item, index) => {
+            const foundProduct = listProductData.find(product => product.codeProduct === item.codeProduct);
+            if (foundProduct) {
+                return {
+                    index,
+                    ...item,
+                    quantity: foundProduct.quantity,
+                    currentQuantity: item.quantity,
+                    isValidateMaxQuantity: false,
+                    isValidateMinQuantity: false,
+                    isValidateSalePrice: false
+                };
+            }
+        });
+        getListCodeProductCart()
+        setListCartProduct(updatedListCartProduct);
+        matchTotalPrice();
+    };
+
+    const mergeDataProductChange = () => {
+        const clonedProductData = cloneDeep(listLocalProduct);
+    
+        for (let i = 0; i < clonedProductData.length; i++) {
+            for (let j = 0; j < listCartProduct.length; j++) {
+                if (clonedProductData[i].codeProduct === listCartProduct[j].codeProduct) {
+                    clonedProductData[i].isSalePrice = listCartProduct[j].isSalePrice;
+                    clonedProductData[i].quantity = listCartProduct[j].currentQuantity;
+                    clonedProductData[i].salePrice = listCartProduct[j].salePrice;
+                    break;
+                }
+            }
+        }
+    
+        return clonedProductData;
+    };
+    
+    const onBack = () => {
+        const dataToStore = mergeDataProductChange();
+        dispatchUpdateCart({
+            id: listCartData.id,
+            customer: cartCustomer,
+            listProduct: dataToStore,
+        });
+    };    
+
     const getListCodeProductCart = () => {
         const arrCode = listCartProduct.map(item => item.codeProduct);
         const removeDuplicateCode = Array.from(new Set(arrCode));
         setArrCodeProduct(removeDuplicateCode);
     }
-    
+
     const updateDataValidate = (data) => {
         setIsValidateDataCart(false);
         listCartProduct.forEach((item, index) => {
@@ -20,17 +78,18 @@ const CartScreen = () => {
             }
         });
     }
-    
+
     useEffect(() => {
         getDataValidate();
     }, [listLocalProduct, listCartData]);
-    
+
     const updateCartCurrentData = (data) => {
         listCartProduct[data.index].isSalePrice = data.isSalePrice;
-    listCartProduct[data.index].salePrice = data.salePrice;
-    listCartProduct[data.index].currentQuantity = data.quantity;
-    updateDataValidate(data);
-    matchTotalPrice();
+        listCartProduct[data.index].salePrice = data.salePrice;
+        listCartProduct[data.index].currentQuantity = data.quantity;
+        updateDataValidate(data);
+        setListCartProduct([...listCartProduct]);
+        matchTotalPrice();
     }
 
     const checkValidateQuantity = () => {
@@ -57,7 +116,7 @@ const CartScreen = () => {
 
     const checkValidateSalePrice = () => {
         let arrCheckSalePrice = [];
-        
+
         listCartProduct.forEach(product => {
             if (!product.isChange) {
                 product.isValidateSalePrice = (product.salePrice > 1.1 * product.floorPrice);
@@ -68,7 +127,7 @@ const CartScreen = () => {
         });
         return arrCheckSalePrice;
     }
-    
+
     const onPressCreateOrder = () => {
         const arrCheckSalePrice = checkValidateSalePrice();
         const arrCheckQuantity = checkValidateQuantity();
@@ -78,7 +137,7 @@ const CartScreen = () => {
             setIsOpenModalCreateOrder(true);
         }
     }
-    
+
     const confirmCreateOrderModal = () => {
         dispatchCreateOder({
             customer: cartCustomer,
@@ -90,13 +149,10 @@ const CartScreen = () => {
         }, timeoutGet);
         closeCreateOderModal();
     }
-    
+
     const closeCreateOderModal = () => {
         setIsOpenModalCreateOrder(false)
-    }
-    
-    //Ai viết hàm getDataValidate thì để dòng code này vào trong
-    getListCodeProductCart()
+    }    
 
     return (
         <SafeAreaView
