@@ -1,7 +1,22 @@
 import { cartAction } from '../actions';
 import useLocalStorage from '../hook/useLocalStorage'
+import { put, takeLatest } from "redux-saga/effects"
+import { cartAction, listProductAction } from "../actions/index"
+import { listProductTypes } from "../constants"
+import { useLocalStorage } from "../hook/index"
+import { adminCartData, listProductData, saleCartData } from "../mockup/index"
+const { getItemData, getData, setData } = useLocalStorage();
 
-const { getItemData,getData,setData } = useLocalStorage();
+const handleGetListProduct = () => {
+    try {
+        const listProductDataLocal = yield getData(listProductData.key)
+        yield put({ type: 'listProductSuccess', data: listProductDataLocal });
+
+    } catch (error) {
+        yield put({ type: 'listProductFailure', errorMess: error.message });
+    }
+}
+
 function* handleCreateItemProduct(payload) {
     const itemProduct = payload;
     const handleFindItemProduct = (DataStoreProduct) => {
@@ -20,31 +35,36 @@ function* handleCreateItemProduct(payload) {
     }
     try {
         const role = yield getItemData("role");
-        if (role==="admin") {
+        if (role === "admin") {
             const dataStoreAdminCart = yield getData(adminCartData.key);
-            if (dataStoreAdminCart.listProduct){
+            if (dataStoreAdminCart.listProduct) {
                 dataStoreAdminCart.listProduct = [itemProduct];
                 yield setData(adminCartData.key, dataStoreAdminCart);
-                yield put(cartAction.CartSucces({data:dataStoreSaleCart }))
-            }else{
+                yield put(cartAction.CartSucces({ data: dataStoreSaleCart }))
+            } else {
                 handleFindItemProduct(dataStoreAdminCart)
-                yield setData(adminCartData.key,dataStoreAdminCart);
-                yield put(cartAction.CartSucces({data:dataStoreAdminCart}))
+                yield setData(adminCartData.key, dataStoreAdminCart);
+                yield put(cartAction.CartSucces({ data: dataStoreAdminCart }))
             }
-        }else{
+        } else {
             const dataStoreSaleCart = yield getData(saleCartDate.key);
-            if (!dataStoreSaleCart.listProduct){
+            if (!dataStoreSaleCart.listProduct) {
                 dataStoreSaleCart.listProduct = [itemProduct];
-                yield setData(saleCartData.key,dataStoreSaleCart);
-                yield put(cartAction.CartSucces({data:dataStoreSaleCart})) //)
-            }else{
+                yield setData(saleCartData.key, dataStoreSaleCart);
+                yield put(cartAction.CartSucces({ data: dataStoreSaleCart })) //)
+            } else {
                 handleFindItemProduct(dataStoreSaleCart);
-                yield setData(saleCartData.key,dataStoreSaleCart)
-                yield put(cartAction.createItemProductSucsses({data:dataStoreSaleCart}))
+                yield setData(saleCartData.key, dataStoreSaleCart)
+                yield put(cartAction.createItemProductSucsses({ data: dataStoreSaleCart }))
             }
         }
     } catch (error) {
-        yield put(cartAction.createItemProductFailure({errorMess:error.message}))
+        yield put(cartAction.createItemProductFailure({ errorMess: error.message }))
     }
 }
 
+
+const listProductSagal = [
+    takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleGetListProduct),
+    takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct)
+];
