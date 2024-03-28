@@ -13,6 +13,7 @@ export default function ProductCard({ data, index, onUpdateCart, validateData, i
         quantity: 0
     });
     const [sumPrice, setSumPrice] = useState(0);
+    const [isDefaultData, setIsDefaultData] = useState(true)
     const isFocused = useIsFocused();
     useEffect(() => {
         setProductUpdate({
@@ -33,24 +34,80 @@ export default function ProductCard({ data, index, onUpdateCart, validateData, i
         setSumPrice(newSumPrice);
     }, [productUpdate]);
 
+    const onPressIsSalePrice = () => {
+        setProductUpdate({
+            ...productUpdate,
+            isSalePrice: !productUpdate.isSalePrice
+        });
+        setIsDefaultData(false);
+    }
+
+    const handleCheckEmpty = (value) => {
+        if (value === '' || parseFloat(value) < 0) {
+            return 0;
+        } else {
+            return value;
+        }
+    }
+
+    const onChangeInputQuantity = (data) => {
+        const quantity = parseInt(handleCheckEmpty(data));
+        setProductUpdate({
+            ...ProductUpdate,
+            quantity: quantity
+        });
+        setIsDefaultData(false);
+        setIsShowValidateMaxQuantity(false)
+        setIsShowValidateMinQuantity(false)
+    }
+
+    const onPressUpButton = () => {
+        setProductUpdate({
+            ...ProductUpdate,
+            quantity: productUpdate.quantity + 1
+        });
+        setIsDefaultData(false);
+        setIsShowValidateMaxQuantity(false)
+        setIsShowValidateMinQuantity(false)
+    }
+
+    const onPressDownButton = () => {
+        setProductUpdate({
+            ...ProductUpdate,
+            quantity: productUpdate.quantity - 1
+        });
+        setIsDefaultData(false);
+        setIsShowValidateMaxQuantity(false)
+        setIsShowValidateMinQuantity(false)
+    }
+
+    const onChangeInputSalePrice = (data) => {
+        const newData = formatMoneyStringToNumber(data);
+        if (newData === 0) {
+            setProductUpdate({
+                ...ProductUpdate,
+                salePrice: parseInt(handleCheckEmpty(newData)),
+                isSalePrice: true
+            });
+        } else {
+            setProductUpdate({
+                ...ProductUpdate,
+                salePrice: parseInt(handleCheckEmpty(newData))
+            });
+        }
+        setIsDefaultData(false);
+        setIsShowValidateSalePrice(false)
+    }
+
+    useMemo(() => {
+        if (!isDefaultData && !data.isChange) {
+            onUpdateCart(productUpdate);
+        }
+    }, [productUpdate]);
+
     const [isShowValidateSalePrice, setIsShowValidateSalePrice] = useState(false);
     const [isShowValidateMaxQuantity, setIsShowValidateMaxQuantity] = useState(false);
     const [isShowValidateMinQuantity, setIsShowValidateMinQuantity] = useState(false);
-
-    //Ai làm hàm onChangeInputQuantity nhét các dòng code này vào trong hàm luôn
-    setIsShowValidateMaxQuantity(false)
-    setIsShowValidateMinQuantity(false)
-
-    //Ai làm hàm onChangeInputSalePrice nhét các dòng code này vào trong hàm luôn
-    setIsShowValidateSalePrice(false)
-
-    //Ai làm hàm onPressUpButton nhét các dòng code này vào trong hàm luôn
-    setIsShowValidateMaxQuantity(false)
-    setIsShowValidateMinQuantity(false)
-
-    //Ai làm hàm onPressDownButton nhét các dòng code này vào trong hàm luôn
-    setIsShowValidateMaxQuantity(false)
-    setIsShowValidateMinQuantity(false)
 
     useEffect(() => {
         if (isValidateDataCart) {
