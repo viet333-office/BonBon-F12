@@ -9,7 +9,7 @@ function* handleGetListCart() {
     const role = yield getItemData("role");
     try {
         if (role === "admin") {
-            const listProductAdminCart = yield (getData(adminCartData.key));
+            const listProductAdminCart = yield ((getDataadminCartData.key));
             yield put(cartAction.cartSuccess({ data: listProductAdminCart }))
         } else {
             const listProductSaleCart = yield (getData(saleCartData.key));
