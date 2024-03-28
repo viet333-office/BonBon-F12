@@ -1,0 +1,37 @@
+import * as actionTypes from "../constants"
+
+const INITIAL_STATE = {
+    isFetching: false,
+    isError: "",
+    errorMess: "",
+    listCustomerData: [],
+    listCustomerSearchData: []
+}
+
+const customer = actionTypes.customerTypes
+
+export default customerReducer = (state = INITIAL_STATE, { type, payload }) => {
+    switch (type) {
+        case customer.GET_CUSTOMER_REQUEST || customer.SEARCH_CUSTOMER_REQUEST:
+            return {
+                ...state,
+                isFetching: true,
+                textSearch: payload
+            }
+        case customer.GET_CUSTOMER_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                listCustomerData: payload.data
+            }
+        case customer.GET_CUSTOMER_FAILURE || customer.SEARCH_CUSTOMER_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                isError: false,
+                errorMess: payload.errorMess
+            }
+        default:
+            return state    
+    }
+}
