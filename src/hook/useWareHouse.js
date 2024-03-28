@@ -5,9 +5,24 @@ const useWareHouse = () => {
   const listWareHouseData = useSelector(
     (state) => state.wareHouse.listWareHousetData
   );
+  const notificationData = useSelector(
+    (state) => state.wareHouse.notificationData
+  );
   const dispatchGetListWareHouse = () => {
     dispatch(wareHouseAction.wareHouseAction.listProductRequest);
   };
-  return { listWareHouseData, dispatchGetListWareHouse };
+  const dispatchUpdateProductPrice = (payload) => {
+    dispatch(wareHouseAction.updateListImportWareHouseRequest(payload));
+  };
+  const dispatchClearNotificationWareHouse = () => {
+    dispatch(wareHouseAction.ClearNotificationListProduct);
+  };
+  return {
+    listWareHouseData,
+    dispatchGetListWareHouse,
+    notificationData,
+    dispatchUpdateProductPrice,
+    dispatchClearNotificationWareHouse,
+  };
 };
 export default useWareHouse;
