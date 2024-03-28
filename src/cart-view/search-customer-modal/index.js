@@ -87,32 +87,66 @@ export const SearchCustomerModal = (props) => {
 
     return (
         <>
-            <TouchableWithoutFeedback>
-                <Modal>
+            <TouchableWithoutFeedback
+                onPress={Keyboard.dismiss}>
+                <Modal
+                    isOpen={isShowModal}
+                    onClose={oncloseModal}>
                     <ModalBackdrop />
                     <ModalContent>
                         <ModalHeader>
-                            <Input w={"100%"} variant="underlined">
+                            <Input
+                                w={"100%"}
+                                variant="underlined">
                                 <InputSlot>
-                                    <EvilIcons name="search" size={30} />
+                                    <EvilIcons
+                                        name="search"
+                                        size={30}
+                                        color={color.gray}
+                                    />
                                 </InputSlot>
-                                <InputField placeholder="Tìm kiếm..." />
-                                <InputSlot style={{ marginRight: 12 }}>
-                                    <AntDesign name="close" size={15} color="gray" />
+                                <InputField
+                                    placeholder="Tìm kiếm..."
+                                    ref={refInput}
+                                    onChangeText={onSearch}
+                                />
+                                <InputSlot
+                                    style={{ marginRight: 12 }}
+                                    display={textSearch ? "flex" : "none"}
+                                    onPress={clearTextSearch}
+                                >
+                                    <AntDesign
+                                        name="close"
+                                        size={15}
+                                        onPress={CloseModal}
+                                        color={color.darkGreen}
+                                    />
                                 </InputSlot>
                                 <InputSlot>
-                                    <AntDesign name="close" size={25} />
+                                    <AntDesign
+                                        name="close"
+                                        size={25}
+                                    />
                                 </InputSlot>
                             </Input>
                         </ModalHeader>
+                        <ModalBody
+                            children={isEmptyList ? <EmptyDataCommon title={"Thêm khách hàng mới"} /> : <></>}>
+                        </ModalBody>
                     </ModalContent>
-                    <ToastNotificationCommon Info="Thêm thành công!!!!!" Description="Đã thêm mới 1 khách hàng" />
+                    <ToastNotificationCommon
+                        Info="Thêm thành công!!!!!"
+                        Description="Đã thêm mới 1 khách hàng"
+                    />
                     <CreateCustomerModal />
                 </Modal>
             </TouchableWithoutFeedback>
-            <EmptyDataCommon title={"Thêm khách hàng mới"} />
+            <EmptyDataCommon
+                title={"Thêm khách hàng mới"}
+            />
             <FlatList>
-                <Pressable marginBottom={"4%"}>
+                <Pressable
+                    marginBottom={"4%"}>
                     <CardUserInfoCommon />
                 </Pressable>
             </FlatList>
