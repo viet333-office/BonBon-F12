@@ -81,7 +81,15 @@ export const cartAction = {
   createItemProductFailure: createAction(listProductTypes.ADD_ITEM_PRODUCT_FAILURE),
 };
 export const customerAction ={
-  listCustomerRequest : createAction (customerTypes.ADD_CUSTOMER_REQUEST),
-  listCustomerSuccess : createAction (customerTypes.ADD_CUSTOMER_SUCCESS),
-  listCustomerFailure : createAction (customerTypes.ADD_CUSTOMER_FAILURE),
+  addCustomerRequest : createAction (customerTypes.ADD_CUSTOMER_REQUEST),
+  addCustomerSuccess : createAction (customerTypes.ADD_CUSTOMER_SUCCESS),
+  addCustomerFailure : createAction (customerTypes.ADD_CUSTOMER_FAILURE),
+
+  listCustomerRequest : createAction (customerTypes.GET_CUSTOMER_REQUEST),
+  listCustomerSuccess : createAction (customerTypes.GET_CUSTOMER_SUCCESS),
+  listCustomerFailure : createAction (customerTypes.GET_CUSTOMER_FAILURE),
+
+  searchListCustomerRequest : createAction (customerTypes.SEARCHList_CUSTOMER_REQUEST),
+  searchListCustomerSuccess : createAction (customerTypes.SEARCHList_CUSTOMER_SUCCESS),
+  searchListCustomerFailure : createAction (customerTypes.SEARCH_CUSTOMER_FAILURE),
 }

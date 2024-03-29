@@ -12,7 +12,7 @@ const customer = actionTypes.customerTypes
 
 export default customerReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
-        case customer.GET_CUSTOMER_REQUEST || customer.SEARCH_CUSTOMER_REQUEST:
+        case customer.GET_CUSTOMER_REQUEST || customer.SEARCH_CUSTOMER_REQUEST || customer.ADD_CUSTOMER_REQUEST:
             return {
                 ...state,
                 isFetching: true,
@@ -24,13 +24,19 @@ export default customerReducer = (state = INITIAL_STATE, { type, payload }) => {
                 isFetching: false,
                 listCustomerData: payload.data
             }
-        case customer.GET_CUSTOMER_FAILURE || customer.SEARCH_CUSTOMER_FAILURE:
+        case customer.GET_CUSTOMER_FAILURE || customer.SEARCH_CUSTOMER_FAILURE :
             return {
                 ...state,
                 isFetching: false,
                 isError: false,
                 errorMess: payload.errorMess
             }
+        case customer.ADD_CUSTOMER_SUCCESS:
+                return {
+                    ...state,
+                    isFetching: false,
+                    textSearch: ""
+                }
         default:
             return state    
     }

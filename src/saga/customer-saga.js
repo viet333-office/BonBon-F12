@@ -50,7 +50,21 @@ function* handleSearchListCustomer({ payload }) {
 
 const customerSaga = [
     takeLatest(customerTypes.GET_CUSTOMER_REQUEST, handleGetListCustomer),
-    takeLatest(customerTypes.SEARCH_CUSTOMER_REQUEST, handleSearchListCustomer)
+    takeLatest(customerTypes.SEARCH_CUSTOMER_REQUEST, handleSearchListCustomer),
+    takeLatest (customerTypes.ADD_CUSTOMER_REQUEST, handleCreateCustomer)
 ]
+function* handleCreateCustomer (data){
+    const {getData,setData} = useLocalStorage();
+    try {
+        const listCustomerDataLocal = yield getData(listCustomerData.key)
+        data.payload.id = listCustomerDataLocal.length +1;
+        listCustomerDataLocal.unshift(data.payload);
+        yield setData(listCustomerData.key,listCustomerDataLocal)
+        yield put(customerAction.addCustomerSuccess);
+        yield handleGetListCustomer();
+    } catch (error) {
+        yield put(customerAction.addCustomerFailure({errorMess:error.message}))
+    }
+}
 
 export default customerSaga
