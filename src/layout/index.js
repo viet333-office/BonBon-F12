@@ -11,7 +11,7 @@ import CartScreen from "../cart-view";
 import ImportWareHouseScreen from "../import-ware-house-view";
 import CreateProductScreen from "../create-product-view";
 import ListOrderScreen from "../list-order-view";
-import DetailOrderScreen from "../detail-order-view";
+import DetailOrderScreen from "../detail-orders-view";
 import CustomeDrawer from "./side-bar-component";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
