@@ -35,6 +35,36 @@ function* handleUpdateListImportWareHouse({ data }) {
     }
 }
 
+function* handleSearchListImportWareHouse({ textSearch }) {
+    const getData = useLocalStorage()
+    const handleCheckString = (inputText) => {
+        const formatTextSearch = textSearch.trim().toLowerCase();
+        const formatInputText = inputText.trim().toLowerCase();
+        const removeVietNameseTextSearch = removeVietnameseTones(formatTextSearch);
+        const removeVietNameseInputText = removeVietnameseTones(formatInputText);
+
+        return removeVietNameseTextSearch.includes(removeVietNameseInputText);
+    }
+    try {
+        const listProductDataLocal = yield getData(listProductData);
+        const result = [];
+
+        if (handleCheckString(listProductDataLocal[i].codeProduct) ||
+            handleCheckString(listProductDataLocal[i].name)
+        ) {
+            result.push(listProductDataLocal[i]);
+        }
+
+        if (result) {
+            yield put(importWareHouseAction.searchListImportWareHouseSuccess({ data: result }));
+        } else {
+            yield put(importWareHouseAction.searchListImportWareHouseSuccess({ data: [] }));
+        }
+    } catch (error) {
+        yield put(importWareHouseAction.searchListImportWareHouseFailure({ errorMess: error.message }));
+    }
+}
+
 const importWareHouseSaga = [
     takeLatest(importWareHouseTypes.GET_IMPORT_WARE_HOUSE_REQUEST, handleGetListImportWareHouse)
 ]

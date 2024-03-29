@@ -6,8 +6,20 @@ export function useImportWareHouse() {
     const listImportWareHouseData = useSelector(state => state.importWareHouse.listImportWareHouseData);
     const dispatchGetListImportWareHouse = () => {
         dispatch(importWareHouseAction.listImportWareHouseRequest())
+    };
+    const listImportWareHouseSearchData = useSelector(state => state.importWareHouse.listImportWareHouseSearchData);
+    const textSearch = useSelector(state => state.importWareHouse.textSearch);
+    const dispatchSearchImportListWareHouse = (payload) => {
+        dispatch(importWareHouseAction.searchListImportWareHouseRequest(payload))
+    };
+    
+    return {
+        listImportWareHouseData,
+        dispatchGetListImportWareHouse,
+        listImportWareHouseSearchData,
+        textSearch,
+        dispatchSearchImportListWareHouse
     }
-    return { listImportWareHouseData, dispatchGetListImportWareHouse }
 }
 
 const dispatchUpdateListWareHouse = (payload) => {
