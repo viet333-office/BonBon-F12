@@ -4,6 +4,7 @@ import { Keyboard, StyleSheet } from "react-native"
 import { useState } from "react";
 import { useImportWareHouse, useListImageProduct, useProduct } from "../hook";
 import ChooseImageProductModal from "./choose-image-product-modal"
+import  {useIsFocused, useNavigation } from "@react-navigation/native"
 export function CreateProductScreen() {
     const { ...productData } = useProduct;
     const { ...dispatchCreateNewProduct } = useImportWareHouse;
