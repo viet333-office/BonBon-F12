@@ -1,5 +1,5 @@
 import { AntDesign, Entypo } from '@expo/vector-icons';
-import { Box, FlatList, HStack, Pressable, Text, VStack } from '@glustack-ui/themed';
+import { Box, FlatList, HStack, Pressable, Text, VStack } from "@gluestack-ui/themed";
 import useNavigation from '@react-navigation/native'
 
 const FlatListOrderCommon = ({ data }) => {

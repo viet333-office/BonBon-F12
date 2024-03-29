@@ -1,7 +1,10 @@
 import { Animated, Text, View } from "react-native"
 import { useEffect, useRef, useState } from "react"
 
-function useEffect() {
+const Message = (props) => {
+    const opacity = useRef(Animated.Value.current);
+
+
     useEffect(() => {
         const sequenceAnimation = Animated.sequence([
             Animated.timing(opacity, {
@@ -9,7 +12,7 @@ function useEffect() {
                 duration: 500,
                 useNativeDriver: true,
             }),
-            Animated.delay(2000), // Thêm tham số duration vào hàm Animated.delay
+            Animated.delay(2000),
             Animated.timing(opacity, {
                 toValue: 0,
                 duration: 500,
@@ -58,14 +61,10 @@ function useEffect() {
                     <Text style={styles.Description}> </Text>
                 </View>
             </Feather>
-        </Animated.View >
+        </Animated.View>
     )
 }
-
 export function ToastNtification() {
-    const Message = (props) => {
-        const opacity = useRef(Animated.Value.current);
-    }
     useEffect(() => {
         const newMessage = {
             info: props.Info,
@@ -118,6 +117,6 @@ export function ToastNtification() {
                     <Text style={styles.Description}> </Text>
                 </View>
             </Feather>
-        </Animated.View >
+        </Animated.View>
     )
 }

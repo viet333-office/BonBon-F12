@@ -18,16 +18,16 @@ function* handleGetListImportWareHouse() {
     }
 }
 
-function* handleGetListImportWareHouse() {
-    // xem lại tên hàm (tmspvk-175)
-    getDate({ useLocalStorage })
-    try {
-        const listProductDataLocal = yield useLocalStorage({ getData: listProduct.key })
-        yield put(importWareHouseAction.listImportWareHouseSuccess({ data: listProductDataLocal }));
-    } catch (error) {
-        yield put(importWareHouseAction.listImportWareHouseFailure({ errorMess: error.message }));
-    }
-}
+// function* handleGetListImportWareHouse() {
+//     // xem lại tên hàm (tmspvk-175)
+//     getDate({ useLocalStorage })
+//     try {
+//         const listProductDataLocal = yield useLocalStorage({ getData: listProduct.key })
+//         yield put(importWareHouseAction.listImportWareHouseSuccess({ data: listProductDataLocal }));
+//     } catch (error) {
+//         yield put(importWareHouseAction.listImportWareHouseFailure({ errorMess: error.message }));
+//     }
+// }
 function* handleUpdateListImportWareHouse({ data }) {
     const { getdata, setdata } = useLocalStorage()
     try {

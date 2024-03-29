@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, Children } from 'react'
 import { Dimensions, View } from 'react-native'
 import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons'
 import { Box, Button, ButtonIcon, HStack, Image, Input, InputField, Text, VStack, FormControlErrorText } from '@gluestack-ui/themed'
-import { color, formatMoney, textConst, formatMoneyStringToNumber } from 'utils'
+import { color, formatMoney, textConst, formatMoneyStringToNumber } from '../../utils'
 import styles from '../product-card/style'
 
 export default function ProductCard({ data, index, onUpdateCart, validateData, isValidateDataCart }) {
