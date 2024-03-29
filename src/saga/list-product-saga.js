@@ -1,4 +1,4 @@
-import { cartAction } from '../actions';
+
 import useLocalStorage from '../hook/useLocalStorage'
 import { put, takeLatest } from "redux-saga/effects"
 import { cartAction, listProductAction } from "../actions/index"
@@ -64,7 +64,7 @@ function* handleCreateItemProduct(payload) {
 }
 
 
-const listProductSagal = [
+const listProductSaga = [
     takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleGetListProduct),
     takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct)
 ];
