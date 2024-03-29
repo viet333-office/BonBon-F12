@@ -93,6 +93,7 @@ function* handleSearchListProduct(payload = textSearch) {
 }
 
 const listProductSaga = [
+const listProductSaga = [
     takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleGetListProduct),
     takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct),
     takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleSearchListProduct),

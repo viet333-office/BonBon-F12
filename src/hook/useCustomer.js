@@ -16,6 +16,8 @@ export default useCustomer = () => {
     const dispatchSearchCustomer = (payload) => {
         dispatch(customerAction.searchListCustomerRequest(payload))
     }
-
-    return { listCustomer, listCustomerSearchData, dispatchGetListCustomer, dispatchSearchCustomer }
+    const dispatchCreateCustomer =(payload) =>{
+        return dispatch(customerAction.addCustomerRequest)
+    }
+    return { listCustomer, listCustomerSearchData, dispatchGetListCustomer, dispatchSearchCustomer,dispatchCreateCustomer }
 }
