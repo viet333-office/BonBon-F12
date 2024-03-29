@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 import * as actionTypes from "../constants"
 
 const INITIAL_STATE = {
@@ -41,3 +43,4 @@ export default function listImageProductReducer(state = INITIAL_STATE, { type, p
     }
 
 }
+>>>>>>> dev

@@ -1,8 +1,15 @@
 import createAction from "@reduxjs/toolkit";
 import * as authType from "../constants/authType";
 import importWareHouse from "../constants";
+import customerTypes from "../constants"
 import * as wareHouseTypes from "../constants/wareHouseType";
 import cartTypes from '../constants'
+import listProductTypes from "../constants"
+export const listProductAction = {
+     listProductRequest : createAction(listProductTypes.GET_LIST_PRODUCT_REQUEST),
+     listProductSuccess : createAction(listProductTypes.GET_LIST_PRODUCT_SUCCESS),
+     listProductFailure : createAction(listProductTypes.GET_LIST_PRODUCT_FAILURE)
+}
 
 export const listOrderAction = {
   listOrderRequest: createAction(listOrderTypes.GET_LIST_ORDER_REQUEST),
@@ -79,3 +86,8 @@ export const cartAction = {
   createItemProductSucsses: createAction(listProductTypes.ADD_ITEM_PRODUCT_SUCCESS),
   createItemProductFailure: createAction(listProductTypes.ADD_ITEM_PRODUCT_FAILURE),
 };
+export const customerAction ={
+  listCustomerRequest : createAction (customerTypes.ADD_CUSTOMER_REQUEST),
+  listCustomerSuccess : createAction (customerTypes.ADD_CUSTOMER_SUCCESS),
+  listCustomerFailure : createAction (customerTypes.ADD_CUSTOMER_FAILURE),
+}
