@@ -17,6 +17,9 @@ export const useProduct=()=>{
     const dispatchCreateItemProduct = (payload)=>{
         dispatch(cartAction.createItemProductRequest(payload))
     }
+    function dispatchSearchListProduct(payload ){
+        dispatch(searchListProductRequest(payload));
+    }
     return {
         notificationData,
         listProductData,
@@ -24,6 +27,7 @@ export const useProduct=()=>{
         isFetching,
         dispatchClearNotification,
         dispatchGetListProduct,
-        dispatchCreateItemProduct
+        dispatchCreateItemProduct,
+        dispatchSearchListProduct
     }
 }

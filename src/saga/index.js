@@ -1,7 +1,7 @@
 import wareHouseSaga from "./ware-house-saga"
 import { all } from "redux-saga/effects"
 import importWareHouseSaga from "./import-ware-house-saga"
-import wareHouseSaga from "./ware-house-saga"
+// import wareHouseSaga from "./ware-house-saga"
 import cartSaga from "./cart-saga"
 import listOrderSaga from "./list-order-saga"
 import listProductSaga from "./list-product-saga"

@@ -10,7 +10,8 @@ import styles from "./style";
 import { useCart, useListOrder, useProduct } from "../hook";
 import DetailProductModal from "./detail-product-modal"
 import { timeoutGet } from "../utils";
-import { flatMap } from "lodash";
+import { flatMap,constant } from "lodash";
+import HeaderSearchCommon from "../component/header-search-common"
 
 export default function ProductScreen(props) {
     const [isNotification, setIsNotification] = useState(false);
@@ -108,3 +109,11 @@ export default function ProductScreen(props) {
         </>
     )
 }
+const { dispatchSearchListProduct } = useProduct();
+    function onGetTextSearch(data) {
+        setLoading(true);
+        setTimeout(() => {
+            dispatchSearchListProduct(data),
+            setLoading(false)
+        }, constant.timeout)
+    }

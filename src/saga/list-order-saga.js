@@ -21,8 +21,6 @@ function transformListProductCart(listData) {
     }));
 }
 
-import moment from 'moment';
-
 function transformCreateOrder(customer, listProduct, cartTotalPrice) {
     const orderCode = generateOrderCode();
 
