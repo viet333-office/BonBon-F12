@@ -1,4 +1,5 @@
-import * as actionTypes from "../constants"
+import * as actionTypes from '../constants'
+
 const INITIAL_STATE = {
     isFetching: false,
     isNotification: false,
@@ -8,7 +9,8 @@ const INITIAL_STATE = {
     listProductSearchData: []
 
 }
-const { listProductTypes } = actionTypes
+const listProductTypes = {...actionTypes.listProductTypes}
+
 export default listProductReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
         case listProductTypes.GET_LIST_PRODUCT_REQUEST:

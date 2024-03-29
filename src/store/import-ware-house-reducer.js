@@ -11,7 +11,7 @@ const INITIAL_STATE = {
     listOrderSearchData: []
 }
 
-const importWareHouse = actionTypes.importWareHouse
+const importWareHouse = {...actionTypes.importWareHouse}
 
 export default listProductReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {

@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects'
-import { listOrderAction } from '../actions/index'
-import listOrderTypes from '../constants'
-import useLocalStorage from '../hook/index'
+import { listOrderAction } from '../actions'
+import { listOrderTypes } from '../constants'
+import { useLocalStorage } from '../hook'
 import { adminCartData, listOrderData, listProductData, saleCartData } from '../mockup/'
 import { dateFormat, removeVietnameseTones, statusOrder } from '../utils'
 import moment from 'moment/moment'
@@ -161,7 +161,7 @@ function* handleSearchListOrder({ payload }) {
             yield put(searchListOrderSuccess({ data: [] }));
         }
     } catch (error) {
-        yield put(searchListOrderFailure({ errorMess: error.message }));    
+        yield put(searchListOrderFailure({ errorMess: error.message }));
     }
 }
 

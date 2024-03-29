@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     textSearch: "",
     listOrderSearchData: [],
 };
-const listOrderTypes = actionTypes.listOrderType
+const listOrderTypes = {...actionTypes.listOrderTypes}
 
 export default listOrderReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {

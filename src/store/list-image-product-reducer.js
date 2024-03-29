@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     imgObj: null
 }
 
-const imageType = imageProduct.imageProductTypes;
+const imageType = {...imageProduct.imageProductTypes};
 export default function listImageProductReducer(state = INITIAL_STATE, { type, payload }) {
     switch (type) {
         case imageType.GET_IMAGE_PRODUCT_REQUEST:
@@ -28,8 +28,8 @@ export default function listImageProductReducer(state = INITIAL_STATE, { type, p
                 isFetching: true,
                 istImageProductData: payload
             }
-        case importWareHouse.imageType.GET_IMAGE_PRODUCT_FAILURE:
-        case importWareHouse.imageType.UPDATE_IMAGE_PRODUCT_FAILURE:
+        case imageType.GET_IMAGE_PRODUCT_FAILURE:
+        case imageType.UPDATE_IMAGE_PRODUCT_FAILURE:
             return {
                 ...state,
                 isFetching: false,

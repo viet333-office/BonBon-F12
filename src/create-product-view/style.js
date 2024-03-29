@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-
+import { Dimensions, StyleSheet } from "react-native"
+import {color} from "../utils"
 const styles = StyleSheet.create({
     screen: {
         padding: "2%",
@@ -94,3 +94,5 @@ const styles = StyleSheet.create({
         height: "25%",
     }
 })
+
+export default styles;

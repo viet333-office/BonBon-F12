@@ -1,5 +1,8 @@
-import useLocalStorage from "../hook"
-import listImageProductData from "../mockup/index"
+import {useLocalStorage} from "../hook"
+import {listImageProductData} from "../mockup"
+import {imageProductTypes} from "../constants"
+import { put, takeLatest } from 'redux-saga/effects'
+
 
 function* handleGetListImageProduct() {
     const { getData } = useLocalStorage();

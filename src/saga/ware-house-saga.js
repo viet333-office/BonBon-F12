@@ -5,7 +5,6 @@ import useLocalStorage from "../hook/useLocalStorage";
 import listProductData from "../mockup/list-product";
 import adminCartData from "../mockup/admin-cart";
 import saleCartData from "../mockup/sale-cart";
-import listProductTypes from "../constants";
 import { isEmpty } from "lodash";
 
 function* handleGetListWareHouse() {
@@ -53,17 +52,14 @@ function* handleUpdateProductPrice({ payload }) {
     yield setData("saleCartData", saleCartDataLocal);
   } catch (error) {
     yield put({
-      type: listProductTypes.listProductTypes.UPDATE_PRODUCT_PRICE_FAILURE,
+      type: listProductTypes.UPDATE_PRODUCT_PRICE_FAILURE,
       payload: { errorMess: error.message },
     });
   }
 }
 const wareHouseSaga = [
   takeLatest(wareHouseTypes.GET_WARE_HOUSE_REQUEST, handleGetListWareHouse),
-  takeLatest(
-    wareHouseTypes.listProductTypes.UPDATE_PRODUCT_PRICE_REQUEST,
-    handleUpdateProductPrice
-  ),
+  takeLatest(listProductTypes.UPDATE_PRODUCT_PRICE_REQUEST, handleUpdateProductPrice),
 ];
 
 export default wareHouseSaga;

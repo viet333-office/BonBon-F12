@@ -1,4 +1,4 @@
-import * as authTypes from "../constants/authType";
+import * as actionTypes from "../constants";
 
 const INITIAL_STATE = {
   token: null,
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   isError: false,
   message: "",
 };
-
+const authTypes = {...actionTypes.authType}
 export default authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case authTypes.LOGIN_SUCCESS:

@@ -82,8 +82,13 @@ export default function ProductScreen(props) {
             setIsEmptyList (false)
         }
     })
-
-
+    function onGetTextSearch(data) {
+        setLoading(true);
+        setTimeout(() => {
+            dispatchSearchListProduct(data),
+            setLoading(false)
+        }, constant.timeout)
+    }
     return (
         
         <>
@@ -109,11 +114,3 @@ export default function ProductScreen(props) {
         </>
     )
 }
-const { dispatchSearchListProduct } = useProduct();
-    function onGetTextSearch(data) {
-        setLoading(true);
-        setTimeout(() => {
-            dispatchSearchListProduct(data),
-            setLoading(false)
-        }, constant.timeout)
-    }

@@ -1,8 +1,8 @@
 import { put, takeLatest } from "redux-saga/effects"
-import { cartAction, listProductAction } from "../actions/index"
-import listProductTypes from "../constants"
+import { cartAction, listProductAction } from "../actions"
+import { listProductTypes } from "../constants"
 import { useLocalStorage } from "../hook"
-import { adminCartData, listProductData, saleCartData } from "../mockup/index"
+import { adminCartData, listProductData, saleCartData } from "../mockup"
 import { removeVietnameseTones } from "../utils"
 
 const { getItemData, getData, setData } = useLocalStorage();
@@ -40,18 +40,18 @@ function* handleCreateItemProduct(payload) {
             if (dataStoreAdminCart.listProduct) {
                 dataStoreAdminCart.listProduct = [itemProduct];
                 yield setData(adminCartData.key, dataStoreAdminCart);
-                yield put(cartAction.CartSucces({ data: dataStoreSaleCart }))
+                yield put(cartAction.cartSuccess({ data: dataStoreSaleCart }))
             } else {
                 handleFindItemProduct(dataStoreAdminCart)
                 yield setData(adminCartData.key, dataStoreAdminCart);
-                yield put(cartAction.CartSucces({ data: dataStoreAdminCart }))
+                yield put(cartAction.cartSuccess({ data: dataStoreAdminCart }))
             }
         } else {
-            const dataStoreSaleCart = yield getData(saleCartDate.key);
+            const dataStoreSaleCart = yield getData(saleCartData.key);
             if (!dataStoreSaleCart.listProduct) {
                 dataStoreSaleCart.listProduct = [itemProduct];
                 yield setData(saleCartData.key, dataStoreSaleCart);
-                yield put(cartAction.CartSucces({ data: dataStoreSaleCart })) //)
+                yield put(cartAction.cartSuccess({ data: dataStoreSaleCart }))
             } else {
                 handleFindItemProduct(dataStoreSaleCart);
                 yield setData(saleCartData.key, dataStoreSaleCart)
@@ -63,7 +63,7 @@ function* handleCreateItemProduct(payload) {
     }
 }
 
-function* handleSearchListProduct(payload = textSearch) {
+function* handleSearchListProduct( textSearch) {
     const { getData } = useLocalStorage();
     const handleCheckString = (inputText) => {
         const formatTextSearch = textSearch.trim().toLowerCase();
@@ -93,10 +93,9 @@ function* handleSearchListProduct(payload = textSearch) {
 }
 
 const listProductSaga = [
-const listProductSaga = [
-    takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleGetListProduct),
-    takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct),
-    takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleSearchListProduct),
+    takeLatest(listProductTypes.GET_LIST_PRODUCT_REQUEST, handleGetListProduct),
+    takeLatest(listProductTypes.ADD_ITEM_PRODUCT_REQUEST, handleCreateItemProduct),
+    takeLatest(listProductTypes.SEARCH_LIST_PRODUCT_REQUEST, handleSearchListProduct),
 ];
 
 export default listProductSaga

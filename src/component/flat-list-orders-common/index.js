@@ -3,6 +3,10 @@ import { Box, FlatList, HStack, Pressable, Text, VStack } from "@gluestack-ui/th
 import useNavigation from '@react-navigation/native'
 
 const FlatListOrderCommon = ({ data }) => {
+    const navigation = useNavigation()
+    const onPressCard = ({ value }) => {
+        navigation.navigate("DetailOrder", value)
+    }
     return (
         <FlatList
             data={data}
@@ -90,7 +94,3 @@ const FlatListOrderCommon = ({ data }) => {
     )
 }
 export default FlatListOrderCommon
-const navigation = useNavigation()
-const onPressCard = ({ value }) => {
-    navigation.navigate("DetailOrder", value)
-}

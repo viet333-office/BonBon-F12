@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     listCustomerSearchData: []
 }
 
-const customer = actionTypes.customerTypes
+const customer = {...actionTypes.customerTypes}
 
 export default customerReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {

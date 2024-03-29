@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     isError: false,
     errorMess: "",
 }
-export default cartReducer = (state = INITIAL_STATE, { type: action, payload: payload }) => {
+const CartType = {...actionTypes.cartTypes}
+export default cartReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
         case CartType.GET_CART_REQUEST:
             return {
