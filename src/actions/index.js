@@ -6,9 +6,12 @@ import * as wareHouseTypes from "../constants/wareHouseType";
 import cartTypes from '../constants'
 import listProductTypes from "../constants"
 export const listProductAction = {
-     listProductRequest : createAction(listProductTypes.GET_LIST_PRODUCT_REQUEST),
-     listProductSuccess : createAction(listProductTypes.GET_LIST_PRODUCT_SUCCESS),
-     listProductFailure : createAction(listProductTypes.GET_LIST_PRODUCT_FAILURE)
+  listProductRequest: createAction(listProductTypes.GET_LIST_PRODUCT_REQUEST),
+  listProductSuccess: createAction(listProductTypes.GET_LIST_PRODUCT_SUCCESS),
+  listProductFailure: createAction(listProductTypes.GET_LIST_PRODUCT_FAILURE),
+  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_REQUEST),
+  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_SUCCESS),
+  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_FAILURE)
 }
 
 export const listOrderAction = {
@@ -80,8 +83,8 @@ export const cartAction = {
   createItemProductSucsses: createAction(listProductTypes.ADD_ITEM_PRODUCT_SUCCESS),
   createItemProductFailure: createAction(listProductTypes.ADD_ITEM_PRODUCT_FAILURE),
 };
-export const customerAction ={
-  listCustomerRequest : createAction (customerTypes.ADD_CUSTOMER_REQUEST),
-  listCustomerSuccess : createAction (customerTypes.ADD_CUSTOMER_SUCCESS),
-  listCustomerFailure : createAction (customerTypes.ADD_CUSTOMER_FAILURE),
+export const customerAction = {
+  listCustomerRequest: createAction(customerTypes.ADD_CUSTOMER_REQUEST),
+  listCustomerSuccess: createAction(customerTypes.ADD_CUSTOMER_SUCCESS),
+  listCustomerFailure: createAction(customerTypes.ADD_CUSTOMER_FAILURE),
 }

@@ -9,9 +9,11 @@ import ToastNotificationCommon from "../component/toast-notification-common/inde
 import styles from "./style";
 import { useCart, useListOrder, useProduct } from "../hook";
 import DetailProductModal from "./detail-product-modal"
+import HeaderSearchCommon from "../component/header-search-common"
+import { constant } from "lodash";
 export default function ProductScreen(props) {
     const [isNotification, setIsNotification] = useState(false);
-    const [isOpenModal ,setIsOpenModal ] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const [product, setProduct] = useState({
         id: 0,
         name: '',
@@ -27,16 +29,24 @@ export default function ProductScreen(props) {
         avatar: '',
         codeProduct: '',
         phoneNumber: ''
-      });
-    
-    const onCloseModal = ()=>{
-         setIsOpenModal(false);
+    });
+
+    const onCloseModal = () => {
+        setIsOpenModal(false);
+    }
+    const { dispatchSearchListProduct } = useProduct();
+    function onGetTextSearch(data) {
+        setLoading(true);
+        setTimeout(() => {
+            dispatchSearchListProduct(data),
+            setLoading(false)
+        }, constant.timeout)
     }
     return (
-        
+
         <>
-        {isNotification === false ? null : <ToastNotificationCommon />}
-        {isEmptyList === false ? <EmptyDataCommon /> : <CardProductCommon />}
+            {isNotification === false ? null : <ToastNotificationCommon />}
+            {isEmptyList === false ? <EmptyDataCommon /> : <CardProductCommon />}
             <HeaderSearchCommon />
             <ToastNotificationCommon />
             <EmptyDataCommon />
@@ -50,7 +60,7 @@ export default function ProductScreen(props) {
                     <Text color="#fff"></Text>
                 </Box>
             </Fab>
-            <DetailProductModal isOpen = {isOpenModal} product = {product} closeModal={onCloseModal}/>
+            <DetailProductModal isOpen={isOpenModal} product={product} closeModal={onCloseModal} />
         </>
     )
 }
