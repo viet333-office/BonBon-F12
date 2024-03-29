@@ -18,6 +18,16 @@ function* handleGetListImportWareHouse() {
     }
 }
 
+function* handleGetListImportWareHouse() {
+    // xem lại tên hàm (tmspvk-175)
+    getDate({ useLocalStorage })
+    try {
+        const listProductDataLocal = yield useLocalStorage({ getData: listProduct.key })
+        yield put(importWareHouseAction.listImportWareHouseSuccess({ data: listProductDataLocal }));
+    } catch (error) {
+        yield put(importWareHouseAction.listImportWareHouseFailure({ errorMess: error.message }));
+    }
+}
 function* handleUpdateListImportWareHouse({ data }) {
     const { getdata, setdata } = useLocalStorage()
     try {
@@ -34,7 +44,20 @@ function* handleUpdateListImportWareHouse({ data }) {
         })
     }
 }
-
+function* handleAddNewProductImportWareHouse({ payload }) {
+    const { getData, setData } = useLocalStorage;
+    try {
+        const listProductDataLocal = yield* getData(listProductData.key);
+        payload.id = listProductDataLocal.length + 1;
+        yield setData(listProductData.key, listProductDataLocal.key, listProductDataLocal.key);
+        yield put(importWareHouseAction.addNewProductImportWareHouseSuccess())
+        yield handleGetListImportWareHouse();
+    } catch (error) {
+        yield importWareHouseAction.addNewProductImportWareHouseSuccess({
+            errorMess: error.message
+        })
+    }
+}
 const importWareHouseSaga = [
     takeLatest(importWareHouseTypes.GET_IMPORT_WARE_HOUSE_REQUEST, handleGetListImportWareHouse)
 ]

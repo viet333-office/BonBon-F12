@@ -8,8 +8,30 @@ import LoadingCommon from "../component/loading-common/index";
 import ToastNotificationCommon from "../component/toast-notification-common/index";
 import styles from "./style";
 import { useCart, useListOrder, useProduct } from "../hook";
+import DetailProductModal from "./detail-product-modal"
 export default function ProductScreen(props) {
     const [isNotification, setIsNotification] = useState(false);
+    const [isOpenModal ,setIsOpenModal ] = useState(false);
+    const [product, setProduct] = useState({
+        id: 0,
+        name: '',
+        quantity: 0,
+        description: '',
+        rootPrice: 0,
+        floorPrice: 0,
+        expiry: '',
+        updateAt: '',
+        unit: '',
+        supply: '',
+        origin: '',
+        avatar: '',
+        codeProduct: '',
+        phoneNumber: ''
+      });
+    
+    const onCloseModal = ()=>{
+         setIsOpenModal(false);
+    }
     return (
         
         <>
@@ -28,7 +50,7 @@ export default function ProductScreen(props) {
                     <Text color="#fff"></Text>
                 </Box>
             </Fab>
-            <DetailProductModal />
+            <DetailProductModal isOpen = {isOpenModal} product = {product} closeModal={onCloseModal}/>
         </>
     )
 }

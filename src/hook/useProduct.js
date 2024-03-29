@@ -1,4 +1,5 @@
 import {useDispatch, useSelector } from "react-redux";
+import { listProductAction, cartAction } from '../actions'
 export const useProduct=()=>{
     const dispatch = useDispatch();
     const listProductData = useSelector((state) => state.listProductData);
@@ -13,12 +14,16 @@ export const useProduct=()=>{
     const dispatchClearNotification = (payload)=>{
         dispatch(ClearNotificationListProduct(payload))
     }
+    const dispatchCreateItemProduct = (payload)=>{
+        dispatch(cartAction.createItemProductRequest(payload))
+    }
     return {
         notificationData,
         listProductData,
         listProductSearchData,
         isFetching,
         dispatchClearNotification,
-        dispatchGetListProduct
+        dispatchGetListProduct,
+        dispatchCreateItemProduct
     }
 }

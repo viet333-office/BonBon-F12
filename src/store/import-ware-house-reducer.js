@@ -19,7 +19,7 @@ export default listProductReducer = (state = INITIAL_STATE, action) => {
             return {
                 isFetching: true
             }
-        case importWareHouse.GET_IMPORT_WARE_HOUSE_SUCCESS:
+        case importWareHouse.GET_IMPORT_WARE_HOUSE_SUCCESS: // cần check lại TMSPVK-172
             return {
                 isFetching: false,
                 listCartData: action.payload
@@ -30,17 +30,37 @@ export default listProductReducer = (state = INITIAL_STATE, action) => {
                 isError: true,
                 errorMess: action.payload.errorMess
             }
-        case UPDATE_IMPORT_WARE_HOUSE_REQUEST:
+
+            case importWareHouse.ADD_IMPORT_WARE_HOUSE_REQUEST:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case importWareHouse.ADD_IMPORT_WARE_HOUSE_SUCCESS: 
+            return {
+                ...state,
+                isFetching: true,
+                listImportWareHouseData: payload
+            }
+        case importWareHouse.ADD_IMPORT_WARE_HOUSE_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+               isError: false ,
+               errorMess: payload.errorMess
+            }
+
+        case importWareHouse.UPDATE_IMPORT_WARE_HOUSE_REQUEST:
             return {
                 isFetching: true,
                 textSearch: payload
             }
-        case UPDATE_IMPORT_WARE_HOUSE_SUCCESS:
+        case importWareHouse.UPDATE_IMPORT_WARE_HOUSE_SUCCESS:
             return {
                 isFetching: false,
                 listImportWareHouseData: payload.data
             }
-        case UPDATE_IMPORT_WARE_HOUSE_FAILURE:
+        case importWareHouse.UPDATE_IMPORT_WARE_HOUSE_FAILURE:
             return {
                 isFetching: false,
                 isError: true,
