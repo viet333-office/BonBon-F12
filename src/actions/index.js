@@ -3,6 +3,12 @@ import * as authType from "../constants/authType";
 import importWareHouse from "../constants";
 import * as wareHouseTypes from "../constants/wareHouseType";
 import cartTypes from '../constants'
+import listProductTypes from "../constants"
+export const listProductAction = {
+     listProductRequest : createAction(listProductTypes.GET_LIST_PRODUCT_REQUEST),
+     listProductSuccess : createAction(listProductTypes.GET_LIST_PRODUCT_SUCCESS),
+     listProductFailure : createAction(listProductTypes.GET_LIST_PRODUCT_FAILURE)
+}
 
 export const listOrderAction = {
   listOrderRequest: createAction(listOrderTypes.GET_LIST_ORDER_REQUEST),
@@ -18,6 +24,21 @@ export const authAction = {
   loginSuccess: createAction(authType.LOGIN_SUCCESS),
   loginFailure: createAction(authType.LOGIN_FAILURE),
 };
+export const importWareHouseAction = {
+  addNewProductImportWareHouseRequest: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_REQUEST),
+  addNewProductImportWareHouseSuccess: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_SUCCESS),
+  addNewProductImportWareHouseFailure: createAction(importWareHouseTypes.ADD_IMPORT_WARE_HOUSE_FAILURE)
+}
+
+export const imageProductAction = {
+  getListImageProductRequest: createAction(imageProductTypes.GET_IMAGE_PRODUCT_REQUEST),
+  getListImageProductSuccess: createAction(imageProductTypes.GET_IMAGE_PRODUCT_SUCCESS),
+  getListImageProductFailure: createAction(imageProductTypes.GET_IMAGE_PRODUCT_FAILURE),
+
+  updateListImageProductRequest: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_REQUEST),
+  updateListImageProductSuccess: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_SUCCESS),
+  updateListImageProductFailure: createAction(imageProductTypes.UPDATE_IMAGE_PRODUCT_FAILURE)
+}
 
 export const importimportWareHouseAction = {
   listImportWareHouseRequest: createAction(
