@@ -65,6 +65,12 @@ export const updateListImportWareHouseRequest = createAction(importWareHouseType
 export const updateListImportWareHouseSuccess = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_SUCCESS);
 export const updateListImportWareHouseFailure = createAction(importWareHouseTypes.UPDATE_IMPORT_WARE_HOUSE_FAILURE);
 
+export const  listProductAction = {
+  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_REQUEST),
+  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_SUCCESS),
+  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_FAILURE)
+}
+
 export const cartAction = {
   cartRequest: createAction(cartTypes.GET_CART_REQUEST),
   cartSuccess: createAction(cartTypes.GET_CART_SUCCESS),

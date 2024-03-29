@@ -59,5 +59,24 @@ export default listProductReducer = (state = INITIAL_STATE, { type, payload }) =
                 isError:true,
                 errorMess:payload.errorMess
             }
+
+            case listProductTypes.SEARCH_LIST_PRODUCT_REQUEST:
+            return {
+                isFetching: true,
+                textSearch: payload
+            }
+
+        case listProductTypes.SEARCH_LIST_PRODUCT_SUCCESS:
+            return {
+                isFetching: false,
+                listProductData: payload.data
+            }
+
+        case listProductTypes.SEARCH_LIST_PRODUCT_FAILURE:
+            return {
+                isFetching: false,
+                isError: false,
+                errorMess: payload.errorMess
+            } 
     }
 }
