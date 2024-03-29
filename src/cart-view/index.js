@@ -24,6 +24,10 @@ const CartScreen = () => {
     const [isValidateDataCart, setIsValidateDataCart] = useState(false);
     const [isOpenModalCreateOrder, setIsOpenModalCreateOrder] = useState(false);
     const [arrCodeProduct, setArrCodeProduct] = useState([]);
+    const [isDeleteModal,setIsDeleteModal ] = useState(false);
+    const [productDelete,setProductDelete] = useState({index,productName});
+    const [isDeleteAll,setIsDeleteAll] = useState(false);
+    const [isNotification,setNotification ] = useState(false);
     const { dispatchCreateOder } = useListOrder();
     const { dispatchUpdateCart } = useCart()
 
@@ -37,6 +41,37 @@ const CartScreen = () => {
         });
 
     };
+    const closeRow = (rowMap ,rowKey )=>{
+        if (rowMap[rowKey]) {
+            rowMap[rowKey].closeRow();
+          }
+    };
+    const onOpenDeleteProductModal  = ({data,rowMap})=>{
+        setProductDelete(data.index, data.item.name);
+        setIsDeleteModal(true);
+        setIsDeleteAll(false);
+        closeRow(rowMap,data.item.key);
+    };
+    const onOpenDeleteAllModal = ()=>{
+        setIsDeleteModal(true);
+        setIsDeleteAll(true);
+    };
+    const deleteCartCurrentData = (productIndex)=>{
+        if (isDeleteAll){
+            setListLocalProduct([]);
+        }else{
+            const filterProductData = listLocalProduct.filter((product,index) => productIndex!=index);
+            setListLocalProduct(filterProductData);
+        }
+    }
+    const submitDeleteProduct = ()=>{
+        deleteCartCurrentData(productDelete.index);
+        setIsDeleteModal(false);
+        setNotification(true);
+        setTimeout(() => {
+            setNotification(false);
+          }, 1000 * 1.5);
+    }
     useEffect(() => {
         if (listCartData.listProduct) {
             setListLocalProduct(listCartData.listProduct)
@@ -198,9 +233,9 @@ const CartScreen = () => {
                     onBack={onBack}
                 />
             </Box>
-            XGH-HTML_CV-4
-            <ToastNotificationCommon />
-            XGH-HTML_CV-5
+            {/* XGH-HTML_CV-4 */}
+            {isNotification&&<ToastNotificationCommon Description={isDeleteAll?"Đã xóa tất cả sản phẩm":`Đã xóa sản phẩm ` + productDelete.productName}/>}
+            {/* XGH-HTML_CV-5 */}
             <SwipeList
                 listProductSwipe={listProductSwipe}
                 updateCartCurrentData={updateCartCurrentData}
@@ -209,9 +244,15 @@ const CartScreen = () => {
                 isValidateDataCart={isValidateDataCart}
             />
             <SearchCustomerModal />
-            XGH-HTML_CV-7
-            <DeleteProductModal />
-            XGH-HTML_CV-8
+            {/* XGH-HTML_CV-7 */}
+            <DeleteProductModal 
+                isOpen={isDeleteModal}
+                onClose={onClose}
+                onConfirm={submitDeleteProduct}
+                isDeleteAll={isDeleteAll}
+                productName={productDelete.productName}
+            />
+            {/* XGH-HTML_CV-8 */}
             <ConfirmOderCreationModal
                 isOpen={isOpenModalCreateOrder}
                 onClose={closeCreateOrderModal}
