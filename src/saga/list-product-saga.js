@@ -1,4 +1,4 @@
-import { cartAction } from '../actions';
+
 import useLocalStorage from '../hook/useLocalStorage'
 import { put, takeLatest } from "redux-saga/effects"
 import { cartAction, listProductAction } from "../actions/index"
@@ -6,6 +6,8 @@ import { listProductTypes } from "../constants"
 import { useLocalStorage } from "../hook/index"
 import { adminCartData, listProductData, saleCartData } from "../mockup/index"
 const { getItemData, getData, setData } = useLocalStorage();
+import { removeVietnameseTones } from "../utils";
+import { forEach } from 'lodash';
 
 const handleGetListProduct = () => {
     try {
@@ -63,8 +65,37 @@ function* handleCreateItemProduct(payload) {
     }
 }
 
+function* handleSearchListProduct(payload = textSearch){
+    const {getData} = useLocalStorage();
+    const handleCheckString = (inputText)=>{
+        const formatTextSearch = textSearch.trim().toLowerCase();
+        const formatInputText = inputText.trim ().toLowerCase ();
+        const removeVietNameseTextSearch = removeVietnameseTones(formatTextSearch); 
+        const removeVietNameseInputText = removeVietnameseTones(formatInputText);
+        return ( includes(removeVietNameseTextSearch , removeVietNameseInputText));
+    }
+    try {
+        const  listProductDataLocal = getData(listProductData);
+        const result = [];
+        listProductDataLocal.forEach((item)=>{
+            const codeProduct = item.codeProduct;
+            const name = item.name;
+            if(handleCheckString(codeProduct) || handleCheckString(name)){
+                result.push(listProductDataLocal);
+            }
+        })
+        if(result){
+            yield put(wareHouseAction.searchListWareHouseSuccess({data:result}));
+        }else{
+            yield put(wareHouseAction.searchListWareHouseSuccess({data:[]}))   
+        }
+    } catch (error) {
+        yield put(wareHouseAction.searchListWareHouseFailure({errorMess:error.message}))  
+    }
+}
 
-const listProductSagal = [
+const listProductSaga = [
     takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleGetListProduct),
-    takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct)
+    takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct),
+    takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleSearchListProduct),
 ];

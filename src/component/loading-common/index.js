@@ -1,7 +1,7 @@
 import { Modal, ModalBackdrop, Spinner } from "@gluestack-ui/themed";
 import { color } from "../../utils/color"
 
-export const LoadingCommon = (props) => {
+const LoadingCommon = (props) => {
     return (
         <Modal
             isOpen={props.isOpen}>
@@ -13,3 +13,5 @@ export const LoadingCommon = (props) => {
         </Modal>
     )
 }
+
+export default LoadingCommon;

@@ -1,10 +1,10 @@
-import { adminCartData } from "./AdminCart";
-import { listCustomerData } from "./ListCustomer";
-import { listImageProductData } from "./ListProductImage";
-import { listOrderData } from "./ListOrder";
-import { listProduct } from "./ListProduct";
-import { saleCartData } from "./SaleCart";
+import { adminCartData } from "./admin-cart";
+import { listCustomerData } from "./list-customer";
+import { listImageProductData } from "./list-product-image";
+import { listOrderData } from "./list-order";
+import { listProductData } from "./list-product";
+import { saleCartData } from "./sale-cart";
 
-export default {
-    adminCartData,listCustomerData,listImageProductData,listOrderData,listProduct,saleCartData
+export {
+    adminCartData,listCustomerData,listImageProductData,listOrderData,listProductData,saleCartData
 }

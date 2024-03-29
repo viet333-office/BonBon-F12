@@ -4,16 +4,16 @@ import { Feather } from "@expo/vector-icons"
 import { Fab, Text } from "@gluestack-ui/themed"
 import { CardProductCommon, EmptyDataCommon, HeaderSearchCommon, LoadingCommon, ToastNotificationCommon } from "../component"
 import { useImportWareHouse } from "../hook"
-import { timeoutGet } from "../utils"
+import { timeout, timeoutGet } from "../utils"
 import UpdateOldProductModal from './update-old-product-modal'
 
 function ImportWarehouseScreen(props) {
     const navigation = useNavigation()
     const isFocused = useIsFocused()
 
+    const { listOrderSearchData, textSearch, dispatchSearchListOrder } = useListOrder();
     const { listImportWareHouseData, dispatchGetListImportWareHouse } = useImportWareHouse()
-
-    const [listData, setListData] = useState(false)
+    const [listData, setListData] = useState(listImportWareHouseData)
     const [isLoading, setLoading] = useState(false)
     const [isEmptyList, setIsEmptyList] = useState(false)
 
@@ -36,14 +36,36 @@ function ImportWarehouseScreen(props) {
         return;
     }, [listWareHouseData])
 
+    function onGetTextSearch(data) {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            dispatchSearchImportListWareHouse(data);
+        }, timeout);
+
+        useMemo(() => {
+            if (textSearch && listOrderSearchData.length === 0) {
+                setIsEmptyList(true);
+            }
+            setIsEmptyList(false);
+            if (textSearch && listOrderSearchData.length !== 0) {
+                setListData(listOrderSearchData);
+            } else {
+                setListData(listOrderData);
+            }
+        }, [textSearch, listOrderSearchData, listOrderData]);
+    }
+
     return (
         <>
-            <HeaderSearchCommon />
+            <HeaderSearchCommon
+                onGetTextSearch={onGetTextSearch} />
             <ToastNotificationCommon Info="Thành công !!!" />
             <EmptyDataCommon />
             <CardProductCommon />
             <UpdateOldProductModal />
-            <LoadingCommon />
+            <LoadingCommon
+                isOpen={isLoading} />
             <Fab
                 size="lg"
                 placement="bottom right"
@@ -60,7 +82,7 @@ function ImportWarehouseScreen(props) {
             isEmptyList ? (
             <EmptyDataCommon />
             ) : (
-            <CardProductCommon data={listData} />
+            <FlatListOrderCommon data={listData} />
             )
         </>
     )

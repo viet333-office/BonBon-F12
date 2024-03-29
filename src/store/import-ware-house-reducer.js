@@ -66,6 +66,22 @@ export default listProductReducer = (state = INITIAL_STATE, action) => {
                 isError: true,
                 errorMess: payload.errorMess
             }
+        case importWareHouse.SEARCH_IMPORT_WARE_HOUSE_REQUEST:
+            return {
+                isFetching: true,
+                textSearch: payload,
+            }
+        case importWareHouse.SEARCH_IMPORT_WARE_HOUSE_SUCCESS:
+            return {
+                isFetching: false,
+                listImportWareHouseSearchData: payload.data
+            }
+        case importWareHouse.SEARCH_IMPORT_WARE_HOUSE_FAILURE:
+            return {
+                isFetching: false,
+                isError: false,
+                errorMess: payload.errorMess
+            }
         default:
             return state
     }

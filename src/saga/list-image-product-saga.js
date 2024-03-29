@@ -17,7 +17,7 @@ function* handleGetListImageProduct() {
     };
 }
  function* handleUpdateListImageProduct(payload){
-    const[getData, setData] = useLocalStorage();
+    const{getData} = useLocalStorage();
     try {
         const listImageProductDataLocal = yield call(getData, { key: listImageProductData });
         yield put( imageProductAction. getListImageProductSuccess({  

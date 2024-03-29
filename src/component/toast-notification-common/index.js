@@ -62,7 +62,7 @@ function useEffect() {
     )
 }
 
-export function ToastNtification() {
+export default function ToastNtification() {
     const Message = (props) => {
         const opacity = useRef(Animated.Value.current);
     }
