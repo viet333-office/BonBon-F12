@@ -1,8 +1,8 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import cartAction from '../actions'
-import cartTypes from '../constants'
-import useLocalStorage from '../hook/index'
-import { adminCartData, saleCartData } from '../mockup/index'
+import {cartTypes} from '../constants'
+import useLocalStorage from '../hook/useLocalStorage'
+import { adminCartData, saleCartData } from '../mockup'
 
 const { getData, getItemData, setData } = useLocalStorage();
 function* handleGetListCart() {

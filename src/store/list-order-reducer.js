@@ -8,11 +8,9 @@ const INITIAL_STATE = {
     textSearch: "",
     listOrderSearchData: [],
 };
-const listOrderTypes = {
-    ...actionTypes,
-};
+const listOrderTypes = actionTypes.listOrderType
 
-export default listOrderReducer = (state = INITIAL_STATE, { type: string, payload: { } }) => {
+export default listOrderReducer = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
         case listOrderTypes.GET_LIST_ORDER_REQUEST:
             return {
@@ -31,19 +29,17 @@ export default listOrderReducer = (state = INITIAL_STATE, { type: string, payloa
                 listOrderData: payload.errorMess
             };
         case listOrderTypes.SEARCH_LIST_ORDER_REQUEST:
-        return {
-            isFetching: true,
-            textSearch: payload
-        }
-
+            return {
+                isFetching: true,
+                textSearch: payload
+            }
         case listOrderTypes.SEARCH_LIST_ORDER_SUCCESS:
-            return{
+            return {
                 isFetching: false,
                 listOrderSearchData: payload.data
             }
-
         case listOrderTypes.SEARCH_LIST_ORDER_FAILURE:
-            return{
+            return {
                 isFetching: false,
                 isError: false,
                 errorMess: payload.errorMess
@@ -51,5 +47,5 @@ export default listOrderReducer = (state = INITIAL_STATE, { type: string, payloa
         default:
             return state;
     }
-};
+}
 

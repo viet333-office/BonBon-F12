@@ -1,8 +1,8 @@
 import { put, takeLatest } from "redux-saga/effects";
-import { wareHouseAction } from "../actions";
-import * as wareHouseTypes from "../constants/wareHouseType";
+import { wareHouseAction, listProductAction } from "../actions";
+import { wareHouseTypes, listProductTypes } from "../constants";
 import useLocalStorage from "../hook/useLocalStorage";
-import listProductData from "../mockup/list-product";
+import { listProductData } from "../mockup";
 
 function* handleGetListWareHouse() {
   const { getData } = useLocalStorage();

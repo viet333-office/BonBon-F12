@@ -1,4 +1,4 @@
-import * as actionTypes from "../constants" // Chỉnh sửa actionTypes = imageProduct
+import * as imageProduct from "../constants" // Chỉnh sửa actionTypes = imageProduct
 
 const INITIAL_STATE = {
     isFetching: null,
@@ -38,5 +38,6 @@ export default function listImageProductReducer(state = INITIAL_STATE, { type, p
             }
 
         default:
+            return state;
     }
 }

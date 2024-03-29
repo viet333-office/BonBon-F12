@@ -34,7 +34,8 @@ function* handleUpdateListImageProduct(payload) {
     }
 }
 
-export default function* importWareHouseSaga() {
-    yield takeLatest(imageProductTypes.GET_IMAGE_PRODUCT_REQUEST, handleGetListImageProduct);
-    yield takeLatest(imageProductTypes.UPDATE_IMAGE_PRODUCT_REQUEST, handleUpdateListImageProduct);
-}
+const importWareHouseSaga = [
+    takeLatest(imageProductTypes.GET_IMAGE_PRODUCT_REQUEST, handleGetListImageProduct),
+    takeLatest(imageProductTypes.UPDATE_IMAGE_PRODUCT_REQUEST, handleUpdateListImageProduct),
+]
+export default importWareHouseSaga;

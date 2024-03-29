@@ -92,8 +92,10 @@ function* handleSearchListProduct(payload = textSearch) {
     }
 }
 
-const listProductSagal = [
+const listProductSaga = [
     takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleGetListProduct),
     takeLatest("ADD_ITEM_PRODUCT_REQUEST", handleCreateItemProduct),
     takeLatest('SEARCH_LIST_PRODUCT_REQUEST', handleSearchListProduct),
 ];
+
+export default listProductSaga

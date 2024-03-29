@@ -1,6 +1,6 @@
 export const adminCartData = {
-    id,
-    shipPrice,
+    id: "",
+    shipPrice: "",
     customer:
     {
         id: "",

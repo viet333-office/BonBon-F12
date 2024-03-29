@@ -1,11 +1,5 @@
-import createAction from "@reduxjs/toolkit";
-import * as authType from "../constants/authType";
-import importWareHouseTypes from "../constants";
-import customerTypes from "../constants"
-import * as wareHouseTypes from "../constants/wareHouseType";
-import cartTypes from '../constants'
-import listProductTypes from "../constants"
-// import importWareHouseAction from '../actions'
+import { createAction } from '@reduxjs/toolkit'
+import { listProductTypes, imageProductTypes, listOrderTypes, customerTypes, cartTypes, importWareHouseTypes, authType, wareHouseTypes , importWareHouse} from "../constants"
 import useLocalStorage from '../hook'
 import listProductData from '../mockup'
 import removeVietnameseTones from '../utils'
@@ -15,8 +9,8 @@ export const listProductAction = {
   listProductSuccess: createAction(listProductTypes.GET_LIST_PRODUCT_SUCCESS),
   listProductFailure: createAction(listProductTypes.GET_LIST_PRODUCT_FAILURE),
   searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_REQUEST),
-  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_SUCCESS),
-  searchListProductRequest: createAction(listProductTypes.SEARCH_LIST_PRODUCT_FAILURE)
+  searchListProductSuccess: createAction(listProductTypes.SEARCH_LIST_PRODUCT_SUCCESS),
+  searchListProductFailure: createAction(listProductTypes.SEARCH_LIST_PRODUCT_FAILURE)
 }
 
 export const listOrderAction = {

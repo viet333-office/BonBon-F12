@@ -38,29 +38,28 @@ export default listProductReducer = (state = INITIAL_STATE, { type, payload }) =
                 isNotification: false
             }
 
-        default:
-            return state;
+
         case listProductTypes.ADD_ITEM_PRODUCT_REQUEST:
             return {
                 ...state,
-                isFetching:true
+                isFetching: true
             }
         case listProductTypes.GET_LIST_PRODUCT_SUCCESS:
             return {
                 ...state,
-                isFetching:false,
-                isNotification:true
+                isFetching: false,
+                isNotification: true
             }
 
         case listProductTypes.ADD_ITEM_PRODUCT_FAILURE:
             return {
                 ...state,
-                isFetching:false,
-                isError:true,
-                errorMess:payload.errorMess
+                isFetching: false,
+                isError: true,
+                errorMess: payload.errorMess
             }
 
-            case listProductTypes.SEARCH_LIST_PRODUCT_REQUEST:
+        case listProductTypes.SEARCH_LIST_PRODUCT_REQUEST:
             return {
                 isFetching: true,
                 textSearch: payload
@@ -77,6 +76,8 @@ export default listProductReducer = (state = INITIAL_STATE, { type, payload }) =
                 isFetching: false,
                 isError: false,
                 errorMess: payload.errorMess
-            } 
+            }
+        default:
+            return state;
     }
 }

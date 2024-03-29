@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   listWareHousetData: [],
 };
 
-const wareHouseTypes = { ...actionTypes.default.wareHouseTypes };
+const wareHouseTypes = actionTypes.wareHouseTypes
 
 export default listProductReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
