@@ -2,7 +2,7 @@ export const moneyFormat = new Intl.NumberFormat("vi-VN", {});
 
 export const formatMoney = (value, returnValue) => {
     const result = moneyFormat.format(value).replaceAll(".", ",");
-    if (len(returnValue ) > 0 && result === "0") {
+    if (!returnValue && result == "0") {
         return returnValue
     } else {
         return result

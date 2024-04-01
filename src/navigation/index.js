@@ -7,11 +7,11 @@ import AppNavigator from "./app-navigation";
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
-  const { token } = useAuth();
+  // const { token } = useAuth();
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {token != null ? (
+        {/* {token != null ? (
           <Stack.Screen
             name="App"
             options={{ headerShown: false }}
@@ -23,7 +23,13 @@ const Navigation = () => {
             options={{ headerShown: false }}
             component={AuthNavigator}
           />
-        )}
+        )} */}
+        <Stack.Screen
+            name="App"
+            options={{ headerShown: false }}
+            component={AppNavigator}
+          />
+        {console.log("test")}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,8 +12,8 @@ import {
   VStack,
 } from "@gluestack-ui/themed";
 import { useEffect, useState } from "react";
-import LoadingCommon from "../../component";
-import styles from "./styles";
+import {LoadingCommon} from "../../component";
+import styles from "./style";
 import {
   buttonText,
   color,
@@ -22,7 +22,7 @@ import {
   textConst,
   timeoutGet,
 } from "../../utils";
-import { Keyboard } from "react-native";
+import { Keyboard,TouchableWithoutFeedback } from "react-native";
 export const UpdatePriceProductModal = (props) => {
   const { isOpen, closeModal, updatePrice, data } = props;
   const [isValidateInput, setIsValidateInput] = useState(false);

@@ -10,7 +10,7 @@ import { React, useState, useCallback, useEffect, useRef } from "react";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 import timeout from "../../utils";
-
+import {Box,HStack ,Input ,InputField ,InputSlot ,Text} from "@gluestack-ui/themed"
 const HeaderSearchCommon = (props) => {
   const [textSearch, setTextSearch] = useState("");
   const refInput = useRef("");

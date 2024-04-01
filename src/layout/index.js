@@ -13,6 +13,7 @@ import CreateProductScreen from "../create-product-view";
 import ListOrderScreen from "../list-order-view";
 import DetailOrderScreen from "../detail-orders-view";
 import CustomeDrawer from "./side-bar-component";
+import WarehouseScreen from "../warehouse-view"
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const config = {
@@ -103,21 +104,25 @@ const Layout = () => {
         name="Product"
         options={{ headerShown: false, unmountOnBlur: true }}
         ProductNavigation={ProductNavigation}
+        component={ProductScreen}
       />
       <Drawer.Screen
         name="ImportWareHouse"
         options={{ headerShown: false, unmountOnBlur: true }}
         WareHouseNavigation={WareHouseNavigation}
+        component={ImportWareHouseScreen}
       />
       <Drawer.Screen
         name="ListOrder"
         options={{ headerShown: false, unmountOnBlur: true }}
         ListOrderNavigation={ListOrderNavigation}
+        component={ListOrderScreen}
       />
       <Drawer.Screen
         name="Warehouse"
         options={{ headerShown: false, unmountOnBlur: true }}
         WarehouseScreen={WarehouseScreen}
+        component={WarehouseScreen}
       />
     </Drawer.Navigator>
   );

@@ -2,10 +2,12 @@ import {
     CardProductCommon,
     LoadingCommon,
     HeaderSearchCommon,
-    ToastNotificationCommon
+    ToastNotificationCommon,
+    EmptyDataCommon
 } from "../component";
+// import HeaderSearchCommon from "../component/header-search-common";
 import { useEffect, useMemo, useState } from "react";
-import useIsFocused from "@react-navigation/native";
+import {useIsFocused} from "@react-navigation/native";
 import useWareHouse from "../hook/useWareHouse";
 import { timeout, timeoutGet } from "../utils";
 import {UpdatePriceProductModal} from "./update-price-product-modal";

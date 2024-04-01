@@ -14,3 +14,4 @@ const styles = StyleSheet.create({
         maxWidth: "89%"
     }
 })
+export default styles;

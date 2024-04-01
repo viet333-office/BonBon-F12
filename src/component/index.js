@@ -9,4 +9,4 @@ import LoadingCommon from './loading-common';
 import ToastNotificationCommon from './toast-notification-common';
 
 
-export default {CardUserInfoCommon,TotalPriceCommon,CardProductCommon, EmptyDataCommon, FlatListOrderCommon, HeaderBackCommon,  HeaderSearchCommon, LoadingCommon, ToastNotificationCommon}
+export {CardUserInfoCommon,TotalPriceCommon,CardProductCommon, EmptyDataCommon, FlatListOrderCommon, HeaderBackCommon,  HeaderSearchCommon, LoadingCommon, ToastNotificationCommon}

@@ -1,5 +1,5 @@
 import * as ta from "../mockup/";
-export const datalogin = [
+export const dataLogin = [
   {
     id: 1,
     username: "admin",
