@@ -7,7 +7,7 @@ import { useImportWareHouse } from "../hook"
 import { timeout, timeoutGet } from "../utils"
 import UpdateOldProductModal from './update-old-product-modal'
 
-function ImportWarehouseScreen(props) {
+export default function ImportWarehouseScreen(props) {
     const navigation = useNavigation()
     const isFocused = useIsFocused()
 

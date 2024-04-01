@@ -1,11 +1,11 @@
 import { config } from '@gluestack-ui/config';
 import { GluestackUIProvider, View } from '@gluestack-ui/themed';
-import * as SplashScreen from '@gluestack-ui/config';
+import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './configStore';
 import useLocalStorage from './src/hook/useLocalStorage';
-import { adminCartData, listCustomerData, listImageProductData, listOrderData, listProduct, saleCartData } from './src/mockup';
+import { adminCartData, listCustomerData, listImageProductData, listOrderData, listProductData, saleCartData } from './src/mockup';
 import Navigation from './src/navigation';
 
 import { StyleSheet } from 'react-native';

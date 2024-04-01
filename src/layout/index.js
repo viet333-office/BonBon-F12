@@ -1,10 +1,10 @@
-import Easing from "react-native";
+import { Easing } from "react-native";
 import { useSelector } from "react-redux";
 import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
-import createDrawerNavigator from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import React from "react";
 import ProductScreen from "../product-view";
 import CartScreen from "../cart-view";
@@ -17,7 +17,7 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const config = {
   animation: " timing ",
-  config: { duration: 200, easing: (linear = Easing) },
+  config: { duration: 200, easing: Easing.linear },
 };
 const handleTakeToken = () => {
   const useToken = useSelector((state) => state.auth).token;
@@ -122,3 +122,5 @@ const Layout = () => {
     </Drawer.Navigator>
   );
 };
+
+export default Layout

@@ -1,7 +1,7 @@
 import React from "react";
-import NavigationContainer from "@react-navigation/native";
-import createNativeStackNavigator from "@react-navigation/native-stack";
-import useAuth from "../hook";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useAuth } from "../hook";
 import AuthNavigator from "./auth-navigation";
 import AppNavigator from "./app-navigation";
 
