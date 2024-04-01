@@ -15,8 +15,9 @@ import TouchableOpacity from "react-native-gesture-handler";
 import { useAuth } from "../hook/useAuth";
 import * as colors from "../utils/color";
 import { authAction } from "../actions";
+
 const handleTakeToken = () => {
-  const useToken = useSelector((state) => state.auth).token;
+  const useToken = useSelector(state => state.auth.token);
   return useToken;
 };
 
