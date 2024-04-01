@@ -30,7 +30,7 @@ const LoginScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [itemData, setItemData] = useLocalStorage();
+  const { setItemData } = useLocalStorage();
   const handleChangeLogin = () => {
     if (username === "") {
       setError("Vui lòng nhập tài khoản để đăng nhập!!!");

@@ -1,4 +1,5 @@
-export const listCustomerData = [
+export const listCustomerData = {
+  listCustomer:[
     {
       id: "1",
       phoneNumber: "1234567890",
@@ -61,6 +62,8 @@ export const listCustomerData = [
       fullName: "Phạm Văn Thảng",
       address: "Nam Trực - Nam Định",
       avatar: "https://banner2.cleanpng.com/20180411/due/kisspng-computer-icons-user-profile-info-5acde51e963fe2.9717334815234429746154.jpg",
-    },
-  ];
+    }
+  ],
+  key: "list-customer"
+};
   

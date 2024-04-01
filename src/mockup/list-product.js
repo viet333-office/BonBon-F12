@@ -1,5 +1,5 @@
 export const listProductData = {
-  product: [
+  listProduct: [
     {
       id: "1",
       name: "ROSTOR 20mg",
@@ -162,4 +162,5 @@ export const listProductData = {
       phoneNumber: "943240352",
     },
   ],
+  key: "list-product",
 };

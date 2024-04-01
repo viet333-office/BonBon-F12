@@ -32,7 +32,7 @@ const App = () => {
                 setAppIsReady(true);
             }
         };
-        prepare();
+        prepare();  
     }, []);
     const onLayoutRootView = useCallback(async () => {
         if (appIsReady) {
