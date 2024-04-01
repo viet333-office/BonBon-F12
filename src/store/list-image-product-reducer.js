@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 }
 
 const imageType = {...imageProduct.imageProductTypes};
-export default function listImageProductReducer(state = INITIAL_STATE, { type, payload }) {
+export default listImageProductReducer = (state = INITIAL_STATE, { type, payload }) =>{
     switch (type) {
         case imageType.GET_IMAGE_PRODUCT_REQUEST:
             return {

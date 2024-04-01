@@ -7,7 +7,7 @@ import listProductSaga from "./list-product-saga"
 import customerSaga from "./customer-saga"
 import listImageProductSaga from "./list-image-product-saga"
 
-export function* rootSaga() {
+function* rootSaga() {
     yield all([
         ...importWareHouseSaga,
         ...wareHouseSaga,
@@ -18,3 +18,4 @@ export function* rootSaga() {
         ...listImageProductSaga
     ])
 }
+export default rootSaga;
